@@ -1,0 +1,43 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.ynov.jh.demo",
+      "nativeLanguage": "fr"
+    },
+    "jhipsterVersion": "6.10.4",
+    "applicationType": "monolith",
+    "baseName": "jhdemo",
+    "packageName": "com.ynov.jh.demo",
+    "packageFolder": "com/ynov/jh/demo",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "postgresql",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "NDA5NmFhMGExYzk3MTVmM2JkYTI2NWE4ZThjYzE0Y2NhZmFiNjE4YzQxZDIxMGJjMGFhNmIyNGJhNjM4NGZlMTFjNjQ5ZWNkMDJlY2UxYzkzZTRkZjIzMTBjODdmNDNiNGZiNjQwYzhlOGI5ZTBkY2ZkYjQwYzJhZDI1MTY2Mzk=",
+    "embeddableLaunchScript": false,
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "angularX",
+    "clientTheme": "cyborg",
+    "clientThemeVariant": "light",
+    "creationTimestamp": 1603908367285,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": true,
+    "nativeLanguage": "fr",
+    "languages": ["fr", "en"],
+    "blueprints": []
+  }
+}
