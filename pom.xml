@@ -9,6 +9,11 @@
     <packaging>jar</packaging>
     <name>Jhdemo</name>
 
+    <scm>
+        <connection>scm:git:https://github.com/bilonjea/jhdemo.git</connection>
+        <developerConnection>scm:git:https://github.com/bilonjea/jhdemo.git</developerConnection>
+        <url>https://github.com/bilonjea/jhdemo.git</url>
+    </scm>
     <repositories>
         <!-- jhipster-needle-maven-repository -->
     </repositories>
