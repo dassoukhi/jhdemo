@@ -12,25 +12,14 @@
     <scm>
         <connection>scm:git:https://github.com/bilonjea/jhdemo.git</connection>
         <developerConnection>scm:git:https://github.com/bilonjea/jhdemo.git</developerConnection>
-        <url>https://github.com/bilonjea/jhdemo.git</url>
     </scm>
     
     <distributionManagement>
-        <site>
-            <url>scm:git:https://github.com/bilonjea/jhdemo</url>
-        </site>
-        <!-- 
         <repository>
-         <id>My_Artifactory_Releases</id>
-            <name>My_Artifactory-releases</name>
-            <url>http://my.maven.repository.internal/artifactory/release</url>
+            <id>github</id>
+            <name>GitHub OWNER Apache Maven Packages</name>
+             <url>https://maven.pkg.github.com/OWNER/REPOSITORY</url>
         </repository>
-        <snapshotRepository>
-            <id>My_Artifactory_Snapshots</id>
-            <name>My_Artifactory-snapshots</name>
-            <url>http://my.maven.repository.internal/artifactory/snapshot</url>
-        </snapshotRepository>
-        -->
     </distributionManagement>
 
     
