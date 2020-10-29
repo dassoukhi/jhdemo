@@ -24,9 +24,12 @@ jobs:
         java-version: 1.8
     #- name: Action ESLint
       #uses: sibiraj-s/action-eslint@v1.0.1
-    - name: Compile with Maven
+    - name: Compile Maven
       run: mvn compile --file pom.xml
-    - name: Test with Maven
+    - name: Test Maven
       run: mvn test --file pom.xml   
-    - name: Build with Maven
+    - name: Build Maven
       run: mvn -B package --file pom.xml
+    - name: Deploy Maven
+      #Just a single step: Deploy using a GitHub token
+      run: mvn deploy -Dregistry=https://maven.pkg.github.com/bilonjea -Dtoken=GH_TOKEN
