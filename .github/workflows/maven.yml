@@ -26,7 +26,7 @@ jobs:
       #uses: sibiraj-s/action-eslint@v1.0.1
     - name: Compile with Maven
       run: mvn compile --file pom.xml
-    - name: Build with Maven
+    - name: Test with Maven
       run: mvn test --file pom.xml   
     - name: Build with Maven
       run: mvn -B package --file pom.xml
