@@ -14,6 +14,26 @@
         <developerConnection>scm:git:https://github.com/bilonjea/jhdemo.git</developerConnection>
         <url>https://github.com/bilonjea/jhdemo.git</url>
     </scm>
+    
+    <distributionManagement>
+        <site>
+            <url>scm:git:https://github.com/bilonjea/jhdemo</url>
+        </site>
+        <!-- 
+        <repository>
+         <id>My_Artifactory_Releases</id>
+            <name>My_Artifactory-releases</name>
+            <url>http://my.maven.repository.internal/artifactory/release</url>
+        </repository>
+        <snapshotRepository>
+            <id>My_Artifactory_Snapshots</id>
+            <name>My_Artifactory-snapshots</name>
+            <url>http://my.maven.repository.internal/artifactory/snapshot</url>
+        </snapshotRepository>
+        -->
+    </distributionManagement>
+
+    
     <repositories>
         <!-- jhipster-needle-maven-repository -->
     </repositories>
