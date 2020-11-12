@@ -60,6 +60,7 @@ public class CacheConfiguration {
             createCache(cm, com.ynov.jh.demo.domain.Job.class.getName());
             createCache(cm, com.ynov.jh.demo.domain.Job.class.getName() + ".tasks");
             createCache(cm, com.ynov.jh.demo.domain.JobHistory.class.getName());
+            createCache(cm, com.ynov.jh.demo.domain.Livre.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

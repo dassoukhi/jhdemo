@@ -56,6 +56,12 @@ entity JobHistory {
 	endDate Instant,
 	language Language
 }
+entity Livre {
+	titre String,
+	description String,
+	isbn String,
+	code String
+}
 
 enum Language {
     FRENCH, ENGLISH, SPANISH
