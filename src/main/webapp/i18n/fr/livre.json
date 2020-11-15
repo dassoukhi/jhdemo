@@ -19,7 +19,11 @@
       "titre": "Titre",
       "description": "Description",
       "isbn": "Isbn",
-      "code": "Code"
+      "code": "Code",
+      "auteur": "Auteur",
+      "emplacement": "Emplacement",
+      "exemplaire": "Exemplaire",
+      "theme": "Theme"
     }
   }
 }

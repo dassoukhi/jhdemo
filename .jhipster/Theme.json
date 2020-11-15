@@ -1,0 +1,34 @@
+{
+  "name": "Theme",
+  "fields": [
+    {
+      "fieldName": "theme",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "maxlength",
+        "required"
+      ],
+      "fieldValidateRulesMaxlength": "45"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "livre",
+      "otherEntityRelationshipName": "theme",
+      "relationshipName": "livre"
+    }
+  ],
+  "changelogDate": "20201112112205",
+  "entityTableName": "theme",
+  "dto": "no",
+  "pagination": "no",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*",
+  "javadoc": "The Theme entity.\\n@author A true hipster"
+}

@@ -1,5 +1,6 @@
 {
   "global": {
+    "bibliothèque": "Bibliothèque",
     "title": "Jhdemo",
     "browsehappy": "Vous utilisez un <strong>ancien</strong> navigateur. Veuillez <a href=\"http://browsehappy.com/?locale=fr\">mettre à jour votre navigateur</a> pour une meilleure expérience.",
     "menu": {
@@ -16,6 +17,12 @@
         "job": "Job",
         "jobHistory": "Job History",
         "livre": "Livre",
+        "utilisateur": "Utilisateur",
+        "auteur": "Auteur",
+        "emplacement": "Emplacement",
+        "theme": "Theme",
+        "exemplaire": "Exemplaire",
+        "emprunt": "Emprunt",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

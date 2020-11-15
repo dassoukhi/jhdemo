@@ -1,0 +1,33 @@
+{
+  "name": "Emprunt",
+  "fields": [
+    {
+      "fieldName": "dateEmprunt",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": [
+        "required"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "utilisateur",
+      "otherEntityRelationshipName": "emprunt",
+      "relationshipName": "utilisateur",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20201114183311",
+  "javadoc": "The Emprunt entity.\\n@author A true hipster",
+  "entityTableName": "emprunt",
+  "dto": "no",
+  "pagination": "no",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

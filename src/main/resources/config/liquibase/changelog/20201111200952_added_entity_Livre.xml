@@ -16,15 +16,24 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="titre" type="varchar(255)">
-                <constraints nullable="true" />
+                <constraints nullable="false" unique="true" uniqueConstraintName="ux_livre_titre" />
             </column>
             <column name="description" type="varchar(255)">
-                <constraints nullable="true" />
+                <constraints nullable="false" />
             </column>
             <column name="isbn" type="varchar(255)">
-                <constraints nullable="true" />
+                <constraints nullable="false" unique="true" uniqueConstraintName="ux_livre_isbn" />
             </column>
             <column name="code" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="auteur_id" type="bigint">
+                <constraints unique="true" nullable="true" uniqueConstraintName="ux_livre_auteur_id" />
+            </column>
+            <column name="emplacement_id" type="bigint">
+                <constraints unique="true" nullable="true" uniqueConstraintName="ux_livre_emplacement_id" />
+            </column>
+            <column name="theme_id" type="bigint">
                 <constraints nullable="true" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->

@@ -1,11 +1,15 @@
 package com.ynov.jh.demo.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A Livre.
@@ -22,17 +26,37 @@ public class Livre implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @Column(name = "titre")
+    @NotNull
+    @Column(name = "titre", nullable = false, unique = true)
     private String titre;
 
-    @Column(name = "description")
+    @NotNull
+    @Column(name = "description", nullable = false)
     private String description;
 
-    @Column(name = "isbn")
+    @NotNull
+    @Column(name = "isbn", nullable = false, unique = true)
     private String isbn;
 
-    @Column(name = "code")
+    @NotNull
+    @Column(name = "code", nullable = false)
     private String code;
+
+    @OneToOne
+    @JoinColumn(unique = true)
+    private Auteur auteur;
+
+    @OneToOne
+    @JoinColumn(unique = true)
+    private Emplacement emplacement;
+
+    @OneToMany(mappedBy = "livre")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    private Set<Exemplaire> exemplaires = new HashSet<>();
+
+    @ManyToOne
+    @JsonIgnoreProperties(value = "livres", allowSetters = true)
+    private Theme theme;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -93,6 +117,70 @@ public class Livre implements Serializable {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public Auteur getAuteur() {
+        return auteur;
+    }
+
+    public Livre auteur(Auteur auteur) {
+        this.auteur = auteur;
+        return this;
+    }
+
+    public void setAuteur(Auteur auteur) {
+        this.auteur = auteur;
+    }
+
+    public Emplacement getEmplacement() {
+        return emplacement;
+    }
+
+    public Livre emplacement(Emplacement emplacement) {
+        this.emplacement = emplacement;
+        return this;
+    }
+
+    public void setEmplacement(Emplacement emplacement) {
+        this.emplacement = emplacement;
+    }
+
+    public Set<Exemplaire> getExemplaires() {
+        return exemplaires;
+    }
+
+    public Livre exemplaires(Set<Exemplaire> exemplaires) {
+        this.exemplaires = exemplaires;
+        return this;
+    }
+
+    public Livre addExemplaire(Exemplaire exemplaire) {
+        this.exemplaires.add(exemplaire);
+        exemplaire.setLivre(this);
+        return this;
+    }
+
+    public Livre removeExemplaire(Exemplaire exemplaire) {
+        this.exemplaires.remove(exemplaire);
+        exemplaire.setLivre(null);
+        return this;
+    }
+
+    public void setExemplaires(Set<Exemplaire> exemplaires) {
+        this.exemplaires = exemplaires;
+    }
+
+    public Theme getTheme() {
+        return theme;
+    }
+
+    public Livre theme(Theme theme) {
+        this.theme = theme;
+        return this;
+    }
+
+    public void setTheme(Theme theme) {
+        this.theme = theme;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

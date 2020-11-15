@@ -3,22 +3,66 @@
   "fields": [
     {
       "fieldName": "titre",
-      "fieldType": "String"
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required",
+        "unique"
+      ]
     },
     {
       "fieldName": "description",
-      "fieldType": "String"
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
     },
     {
       "fieldName": "isbn",
-      "fieldType": "String"
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required",
+        "unique"
+      ]
     },
     {
       "fieldName": "code",
-      "fieldType": "String"
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
     }
   ],
-  "relationships": [],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "auteur",
+      "otherEntityRelationshipName": "livre",
+      "relationshipName": "auteur",
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "emplacement",
+      "otherEntityRelationshipName": "livre",
+      "relationshipName": "emplacement",
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "exemplaire",
+      "otherEntityRelationshipName": "livre",
+      "relationshipName": "exemplaire"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "theme",
+      "otherEntityRelationshipName": "livre",
+      "relationshipName": "theme",
+      "otherEntityField": "id"
+    }
+  ],
   "changelogDate": "20201111200952",
   "entityTableName": "livre",
   "dto": "no",

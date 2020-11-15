@@ -31,6 +31,7 @@
   },
   "defaultProject": "jhdemo",
   "cli": {
-    "packageManager": "npm"
+    "packageManager": "npm",
+    "analytics": "db8d3f76-b833-4f72-81cd-9c674277f292"
   }
 }

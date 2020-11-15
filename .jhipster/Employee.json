@@ -49,7 +49,6 @@
       "relationshipType": "many-to-one",
       "otherEntityName": "department",
       "otherEntityRelationshipName": "employee",
-      "javadoc": "Another side of the same relationship",
       "relationshipName": "department",
       "otherEntityField": "id"
     }

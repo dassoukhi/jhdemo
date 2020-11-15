@@ -4,9 +4,18 @@ import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { ILivre, Livre } from 'app/shared/model/livre.model';
 import { LivreService } from './livre.service';
+import { IAuteur } from 'app/shared/model/auteur.model';
+import { AuteurService } from 'app/entities/auteur/auteur.service';
+import { IEmplacement } from 'app/shared/model/emplacement.model';
+import { EmplacementService } from 'app/entities/emplacement/emplacement.service';
+import { ITheme } from 'app/shared/model/theme.model';
+import { ThemeService } from 'app/entities/theme/theme.service';
+
+type SelectableEntity = IAuteur | IEmplacement | ITheme;
 
 @Component({
   selector: 'jhi-livre-update',
@@ -14,20 +23,79 @@ import { LivreService } from './livre.service';
 })
 export class LivreUpdateComponent implements OnInit {
   isSaving = false;
+  auteurs: IAuteur[] = [];
+  emplacements: IEmplacement[] = [];
+  themes: ITheme[] = [];
 
   editForm = this.fb.group({
     id: [],
-    titre: [],
-    description: [],
-    isbn: [],
-    code: [],
+    titre: [null, [Validators.required]],
+    description: [null, [Validators.required]],
+    isbn: [null, [Validators.required]],
+    code: [null, [Validators.required]],
+    auteur: [],
+    emplacement: [],
+    theme: [],
   });
 
-  constructor(protected livreService: LivreService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
+  constructor(
+    protected livreService: LivreService,
+    protected auteurService: AuteurService,
+    protected emplacementService: EmplacementService,
+    protected themeService: ThemeService,
+    protected activatedRoute: ActivatedRoute,
+    private fb: FormBuilder
+  ) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ livre }) => {
       this.updateForm(livre);
+
+      this.auteurService
+        .query({ filter: 'livre-is-null' })
+        .pipe(
+          map((res: HttpResponse<IAuteur[]>) => {
+            return res.body || [];
+          })
+        )
+        .subscribe((resBody: IAuteur[]) => {
+          if (!livre.auteur || !livre.auteur.id) {
+            this.auteurs = resBody;
+          } else {
+            this.auteurService
+              .find(livre.auteur.id)
+              .pipe(
+                map((subRes: HttpResponse<IAuteur>) => {
+                  return subRes.body ? [subRes.body].concat(resBody) : resBody;
+                })
+              )
+              .subscribe((concatRes: IAuteur[]) => (this.auteurs = concatRes));
+          }
+        });
+
+      this.emplacementService
+        .query({ filter: 'livre-is-null' })
+        .pipe(
+          map((res: HttpResponse<IEmplacement[]>) => {
+            return res.body || [];
+          })
+        )
+        .subscribe((resBody: IEmplacement[]) => {
+          if (!livre.emplacement || !livre.emplacement.id) {
+            this.emplacements = resBody;
+          } else {
+            this.emplacementService
+              .find(livre.emplacement.id)
+              .pipe(
+                map((subRes: HttpResponse<IEmplacement>) => {
+                  return subRes.body ? [subRes.body].concat(resBody) : resBody;
+                })
+              )
+              .subscribe((concatRes: IEmplacement[]) => (this.emplacements = concatRes));
+          }
+        });
+
+      this.themeService.query().subscribe((res: HttpResponse<ITheme[]>) => (this.themes = res.body || []));
     });
   }
 
@@ -38,6 +106,9 @@ export class LivreUpdateComponent implements OnInit {
       description: livre.description,
       isbn: livre.isbn,
       code: livre.code,
+      auteur: livre.auteur,
+      emplacement: livre.emplacement,
+      theme: livre.theme,
     });
   }
 
@@ -63,6 +134,9 @@ export class LivreUpdateComponent implements OnInit {
       description: this.editForm.get(['description'])!.value,
       isbn: this.editForm.get(['isbn'])!.value,
       code: this.editForm.get(['code'])!.value,
+      auteur: this.editForm.get(['auteur'])!.value,
+      emplacement: this.editForm.get(['emplacement'])!.value,
+      theme: this.editForm.get(['theme'])!.value,
     };
   }
 
@@ -80,5 +154,9 @@ export class LivreUpdateComponent implements OnInit {
 
   protected onSaveError(): void {
     this.isSaving = false;
+  }
+
+  trackById(index: number, item: SelectableEntity): any {
+    return item.id;
   }
 }

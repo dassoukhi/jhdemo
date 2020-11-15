@@ -16,6 +16,12 @@
         "job": "Job",
         "jobHistory": "Job History",
         "livre": "Livre",
+        "utilisateur": "Utilisateur",
+        "auteur": "Auteur",
+        "emplacement": "Emplacement",
+        "theme": "Theme",
+        "exemplaire": "Exemplaire",
+        "emprunt": "Emprunt",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

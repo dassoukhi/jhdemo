@@ -56,12 +56,68 @@ entity JobHistory {
 	endDate Instant,
 	language Language
 }
+
+
 entity Livre {
-	titre String,
-	description String,
-	isbn String,
-	code String
+	titre String required unique,
+	description String required,
+	isbn String required unique,
+	code String required
 }
+
+/**
+ * The Utilisateur entity.
+ * @author A true hipster
+ */
+entity Utilisateur {
+		nom String required,
+		prenom String required,
+		dateNaissance LocalDate required,
+		role String required,
+		pseudo String required unique,
+		motDePasse String required
+}
+
+/**
+ * The Auteur entity.
+ * @author A true hipster
+ */
+entity Auteur {
+	auteur String required
+}
+
+/**
+ * The Emplacement entity.
+ * @author A true hipster
+ */
+entity Emplacement {
+	nomEplacement String required
+}
+
+/**
+ * The Theme entity.
+ * @author A true hipster
+ */
+entity Theme {
+	theme String maxlength(45) required
+}
+
+/**
+ * The Exemplaire entity.
+ * @author A true hipster
+ */
+entity Exemplaire {
+	disponibilite Boolean required
+}
+
+/**
+ * The Emprunt entity.
+ * @author A true hipster
+ */
+entity Emprunt {
+	dateEmprunt LocalDate required
+}
+
 
 enum Language {
     FRENCH, ENGLISH, SPANISH
@@ -76,7 +132,10 @@ relationship OneToOne {
 }
 
 relationship OneToOne {
-	Department{location} to Location
+	Department{location} to Location,
+    Exemplaire{emprunt} to Emprunt,
+    Livre{auteur} to Auteur,
+    Livre{emplacement} to Emplacement
 }
 
 relationship ManyToMany {
@@ -86,14 +145,10 @@ relationship ManyToMany {
 // defining multiple OneToMany relationships with comments
 relationship OneToMany {
 	Employee to Job{employee},
-	/**
-	* A relationship
-	*/
-	Department to
-	/**
-	* Another side of the same relationship
-	*/
-	Employee{department}
+    Utilisateur to Emprunt{utilisateur},
+	Department to Employee{department},
+    Livre to Exemplaire{livre},
+    Theme to Livre{theme}
 }
 
 relationship ManyToOne {

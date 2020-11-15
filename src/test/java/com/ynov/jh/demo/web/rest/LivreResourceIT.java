@@ -132,6 +132,82 @@ public class LivreResourceIT {
 
     @Test
     @Transactional
+    public void checkTitreIsRequired() throws Exception {
+        int databaseSizeBeforeTest = livreRepository.findAll().size();
+        // set the field null
+        livre.setTitre(null);
+
+        // Create the Livre, which fails.
+
+
+        restLivreMockMvc.perform(post("/api/livres")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(livre)))
+            .andExpect(status().isBadRequest());
+
+        List<Livre> livreList = livreRepository.findAll();
+        assertThat(livreList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkDescriptionIsRequired() throws Exception {
+        int databaseSizeBeforeTest = livreRepository.findAll().size();
+        // set the field null
+        livre.setDescription(null);
+
+        // Create the Livre, which fails.
+
+
+        restLivreMockMvc.perform(post("/api/livres")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(livre)))
+            .andExpect(status().isBadRequest());
+
+        List<Livre> livreList = livreRepository.findAll();
+        assertThat(livreList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkIsbnIsRequired() throws Exception {
+        int databaseSizeBeforeTest = livreRepository.findAll().size();
+        // set the field null
+        livre.setIsbn(null);
+
+        // Create the Livre, which fails.
+
+
+        restLivreMockMvc.perform(post("/api/livres")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(livre)))
+            .andExpect(status().isBadRequest());
+
+        List<Livre> livreList = livreRepository.findAll();
+        assertThat(livreList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkCodeIsRequired() throws Exception {
+        int databaseSizeBeforeTest = livreRepository.findAll().size();
+        // set the field null
+        livre.setCode(null);
+
+        // Create the Livre, which fails.
+
+
+        restLivreMockMvc.perform(post("/api/livres")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(livre)))
+            .andExpect(status().isBadRequest());
+
+        List<Livre> livreList = livreRepository.findAll();
+        assertThat(livreList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllLivres() throws Exception {
         // Initialize the database
         livreRepository.saveAndFlush(livre);

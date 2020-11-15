@@ -1,0 +1,25 @@
+{
+  "name": "Auteur",
+  "fields": [
+    {
+      "fieldName": "auteur",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    }
+  ],
+  "relationships": [],
+  "changelogDate": "20201112112005",
+  "entityTableName": "auteur",
+  "dto": "no",
+  "pagination": "no",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*",
+  "javadoc": "The Auteur entity.\\n@author A true hipster"
+}
