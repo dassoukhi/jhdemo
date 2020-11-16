@@ -71,6 +71,7 @@ public class CacheConfiguration {
             createCache(cm, com.ynov.jh.demo.domain.Utilisateur.class.getName() + ".emprunts");
             createCache(cm, com.ynov.jh.demo.domain.Auteur.class.getName() + ".livres");
             createCache(cm, com.ynov.jh.demo.domain.Theme.class.getName() + ".livres");
+            createCache(cm, com.ynov.jh.demo.domain.Livre.class.getName() + ".auteurs");
             // jhipster-needle-ehcache-add-entry
         };
     }

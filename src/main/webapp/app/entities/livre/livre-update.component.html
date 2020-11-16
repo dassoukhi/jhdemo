@@ -60,14 +60,6 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="jhdemoApp.livre.auteur" for="field_auteur">Auteur</label>
-                    <select class="form-control" id="field_auteur" name="auteur" formControlName="auteur">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="auteurOption.id === editForm.get('auteur')!.value?.id ? editForm.get('auteur')!.value : auteurOption" *ngFor="let auteurOption of auteurs; trackBy: trackById">{{ auteurOption.id }}</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
                     <label class="form-control-label" jhiTranslate="jhdemoApp.livre.emplacement" for="field_emplacement">Emplacement</label>
                     <select class="form-control" id="field_emplacement" name="emplacement" formControlName="emplacement">
                         <option [ngValue]="null"></option>
@@ -80,6 +72,14 @@
                     <select class="form-control" id="field_theme" name="theme" formControlName="theme">
                         <option [ngValue]="null"></option>
                         <option [ngValue]="themeOption.id === editForm.get('theme')!.value?.id ? editForm.get('theme')!.value : themeOption" *ngFor="let themeOption of themes; trackBy: trackById">{{ themeOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhdemoApp.livre.auteur" for="field_auteur">Auteur</label>
+                    <select class="form-control" id="field_auteur" name="auteur" formControlName="auteur">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="auteurOption.id === editForm.get('auteur')!.value?.id ? editForm.get('auteur')!.value : auteurOption" *ngFor="let auteurOption of auteurs; trackBy: trackById">{{ auteurOption.id }}</option>
                     </select>
                 </div>
             </div>

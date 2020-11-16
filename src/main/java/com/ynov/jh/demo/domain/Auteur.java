@@ -8,6 +8,8 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * The Auteur entity.\n@author A true hipster
@@ -29,6 +31,10 @@ public class Auteur implements Serializable {
     @Column(name = "auteur", nullable = false)
     private String auteur;
 
+    @OneToMany(mappedBy = "auteur")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    private Set<Livre> livres = new HashSet<>();
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
         return id;
@@ -49,6 +55,31 @@ public class Auteur implements Serializable {
 
     public void setAuteur(String auteur) {
         this.auteur = auteur;
+    }
+
+    public Set<Livre> getLivres() {
+        return livres;
+    }
+
+    public Auteur livres(Set<Livre> livres) {
+        this.livres = livres;
+        return this;
+    }
+
+    public Auteur addLivre(Livre livre) {
+        this.livres.add(livre);
+        livre.setAuteur(this);
+        return this;
+    }
+
+    public Auteur removeLivre(Livre livre) {
+        this.livres.remove(livre);
+        livre.setAuteur(null);
+        return this;
+    }
+
+    public void setLivres(Set<Livre> livres) {
+        this.livres = livres;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

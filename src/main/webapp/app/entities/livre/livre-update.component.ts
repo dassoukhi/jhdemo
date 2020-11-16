@@ -8,14 +8,14 @@ import { map } from 'rxjs/operators';
 
 import { ILivre, Livre } from 'app/shared/model/livre.model';
 import { LivreService } from './livre.service';
-import { IAuteur } from 'app/shared/model/auteur.model';
-import { AuteurService } from 'app/entities/auteur/auteur.service';
 import { IEmplacement } from 'app/shared/model/emplacement.model';
 import { EmplacementService } from 'app/entities/emplacement/emplacement.service';
 import { ITheme } from 'app/shared/model/theme.model';
 import { ThemeService } from 'app/entities/theme/theme.service';
+import { IAuteur } from 'app/shared/model/auteur.model';
+import { AuteurService } from 'app/entities/auteur/auteur.service';
 
-type SelectableEntity = IAuteur | IEmplacement | ITheme;
+type SelectableEntity = IEmplacement | ITheme | IAuteur;
 
 @Component({
   selector: 'jhi-livre-update',
@@ -23,9 +23,9 @@ type SelectableEntity = IAuteur | IEmplacement | ITheme;
 })
 export class LivreUpdateComponent implements OnInit {
   isSaving = false;
-  auteurs: IAuteur[] = [];
   emplacements: IEmplacement[] = [];
   themes: ITheme[] = [];
+  auteurs: IAuteur[] = [];
 
   editForm = this.fb.group({
     id: [],
@@ -33,16 +33,16 @@ export class LivreUpdateComponent implements OnInit {
     description: [null, [Validators.required]],
     isbn: [null, [Validators.required]],
     code: [null, [Validators.required]],
-    auteur: [],
     emplacement: [],
     theme: [],
+    auteur: [],
   });
 
   constructor(
     protected livreService: LivreService,
-    protected auteurService: AuteurService,
     protected emplacementService: EmplacementService,
     protected themeService: ThemeService,
+    protected auteurService: AuteurService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
@@ -50,28 +50,6 @@ export class LivreUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ livre }) => {
       this.updateForm(livre);
-
-      this.auteurService
-        .query({ filter: 'livre-is-null' })
-        .pipe(
-          map((res: HttpResponse<IAuteur[]>) => {
-            return res.body || [];
-          })
-        )
-        .subscribe((resBody: IAuteur[]) => {
-          if (!livre.auteur || !livre.auteur.id) {
-            this.auteurs = resBody;
-          } else {
-            this.auteurService
-              .find(livre.auteur.id)
-              .pipe(
-                map((subRes: HttpResponse<IAuteur>) => {
-                  return subRes.body ? [subRes.body].concat(resBody) : resBody;
-                })
-              )
-              .subscribe((concatRes: IAuteur[]) => (this.auteurs = concatRes));
-          }
-        });
 
       this.emplacementService
         .query({ filter: 'livre-is-null' })
@@ -96,6 +74,8 @@ export class LivreUpdateComponent implements OnInit {
         });
 
       this.themeService.query().subscribe((res: HttpResponse<ITheme[]>) => (this.themes = res.body || []));
+
+      this.auteurService.query().subscribe((res: HttpResponse<IAuteur[]>) => (this.auteurs = res.body || []));
     });
   }
 
@@ -106,9 +86,9 @@ export class LivreUpdateComponent implements OnInit {
       description: livre.description,
       isbn: livre.isbn,
       code: livre.code,
-      auteur: livre.auteur,
       emplacement: livre.emplacement,
       theme: livre.theme,
+      auteur: livre.auteur,
     });
   }
 
@@ -134,9 +114,9 @@ export class LivreUpdateComponent implements OnInit {
       description: this.editForm.get(['description'])!.value,
       isbn: this.editForm.get(['isbn'])!.value,
       code: this.editForm.get(['code'])!.value,
-      auteur: this.editForm.get(['auteur'])!.value,
       emplacement: this.editForm.get(['emplacement'])!.value,
       theme: this.editForm.get(['theme'])!.value,
+      auteur: this.editForm.get(['auteur'])!.value,
     };
   }
 

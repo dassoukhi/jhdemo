@@ -24,12 +24,6 @@
                 <dd>
                     <span>{{ livre.code }}</span>
                 </dd>
-                <dt><span jhiTranslate="jhdemoApp.livre.auteur">Auteur</span></dt>
-                <dd>
-                    <div *ngIf="livre.auteur">
-                        <a [routerLink]="['/auteur', livre.auteur?.id, 'view']">{{ livre.auteur?.id }}</a>
-                    </div>
-                </dd>
                 <dt><span jhiTranslate="jhdemoApp.livre.emplacement">Emplacement</span></dt>
                 <dd>
                     <div *ngIf="livre.emplacement">
@@ -40,6 +34,12 @@
                 <dd>
                     <div *ngIf="livre.theme">
                         <a [routerLink]="['/theme', livre.theme?.id, 'view']">{{ livre.theme?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="jhdemoApp.livre.auteur">Auteur</span></dt>
+                <dd>
+                    <div *ngIf="livre.auteur">
+                        <a [routerLink]="['/auteur', livre.auteur?.id, 'view']">{{ livre.auteur?.id }}</a>
                     </div>
                 </dd>
             </dl>

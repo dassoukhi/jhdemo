@@ -9,7 +9,14 @@
       ]
     }
   ],
-  "relationships": [],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "livre",
+      "otherEntityRelationshipName": "auteur",
+      "relationshipName": "livre"
+    }
+  ],
   "changelogDate": "20201112112005",
   "entityTableName": "auteur",
   "dto": "no",

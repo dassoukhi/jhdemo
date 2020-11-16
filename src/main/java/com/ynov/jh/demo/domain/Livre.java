@@ -44,10 +44,6 @@ public class Livre implements Serializable {
 
     @OneToOne
     @JoinColumn(unique = true)
-    private Auteur auteur;
-
-    @OneToOne
-    @JoinColumn(unique = true)
     private Emplacement emplacement;
 
     @OneToMany(mappedBy = "livre")
@@ -57,6 +53,10 @@ public class Livre implements Serializable {
     @ManyToOne
     @JsonIgnoreProperties(value = "livres", allowSetters = true)
     private Theme theme;
+
+    @ManyToOne
+    @JsonIgnoreProperties(value = "livres", allowSetters = true)
+    private Auteur auteur;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -119,19 +119,6 @@ public class Livre implements Serializable {
         this.code = code;
     }
 
-    public Auteur getAuteur() {
-        return auteur;
-    }
-
-    public Livre auteur(Auteur auteur) {
-        this.auteur = auteur;
-        return this;
-    }
-
-    public void setAuteur(Auteur auteur) {
-        this.auteur = auteur;
-    }
-
     public Emplacement getEmplacement() {
         return emplacement;
     }
@@ -181,6 +168,19 @@ public class Livre implements Serializable {
 
     public void setTheme(Theme theme) {
         this.theme = theme;
+    }
+
+    public Auteur getAuteur() {
+        return auteur;
+    }
+
+    public Livre auteur(Auteur auteur) {
+        this.auteur = auteur;
+        return this;
+    }
+
+    public void setAuteur(Auteur auteur) {
+        this.auteur = auteur;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

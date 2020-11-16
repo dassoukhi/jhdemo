@@ -27,9 +27,9 @@
                     <th scope="col" ><span jhiTranslate="jhdemoApp.livre.description">Description</span></th>
                     <th scope="col" ><span jhiTranslate="jhdemoApp.livre.isbn">Isbn</span></th>
                     <th scope="col" ><span jhiTranslate="jhdemoApp.livre.code">Code</span></th>
-                    <th scope="col" ><span jhiTranslate="jhdemoApp.livre.auteur">Auteur</span></th>
                     <th scope="col" ><span jhiTranslate="jhdemoApp.livre.emplacement">Emplacement</span></th>
                     <th scope="col" ><span jhiTranslate="jhdemoApp.livre.theme">Theme</span></th>
+                    <th scope="col" ><span jhiTranslate="jhdemoApp.livre.auteur">Auteur</span></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -41,11 +41,6 @@
                     <td>{{ livre.isbn }}</td>
                     <td>{{ livre.code }}</td>
                     <td>
-                        <div *ngIf="livre.auteur">
-                            <a [routerLink]="['/auteur', livre.auteur?.id, 'view']" >{{ livre.auteur?.id }}</a>
-                        </div>
-                    </td>
-                    <td>
                         <div *ngIf="livre.emplacement">
                             <a [routerLink]="['/emplacement', livre.emplacement?.id, 'view']" >{{ livre.emplacement?.id }}</a>
                         </div>
@@ -53,6 +48,11 @@
                     <td>
                         <div *ngIf="livre.theme">
                             <a [routerLink]="['/theme', livre.theme?.id, 'view']" >{{ livre.theme?.id }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="livre.auteur">
+                            <a [routerLink]="['/auteur', livre.auteur?.id, 'view']" >{{ livre.auteur?.id }}</a>
                         </div>
                     </td>
                     <td class="text-right">

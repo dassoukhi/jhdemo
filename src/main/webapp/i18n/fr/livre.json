@@ -20,10 +20,10 @@
       "description": "Description",
       "isbn": "Isbn",
       "code": "Code",
-      "auteur": "Auteur",
       "emplacement": "Emplacement",
       "exemplaire": "Exemplaire",
-      "theme": "Theme"
+      "theme": "Theme",
+      "auteur": "Auteur"
     }
   }
 }
