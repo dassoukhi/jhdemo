@@ -1,7 +1,7 @@
 package com.ynov.jh.demo.web.rest;
 
 import com.ynov.jh.demo.domain.Auteur;
-import com.ynov.jh.demo.service.AuteurService;
+import com.ynov.jh.demo.repository.AuteurRepository;
 import com.ynov.jh.demo.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -23,6 +24,7 @@ import java.util.Optional;
  */
 @RestController
 @RequestMapping("/api")
+@Transactional
 public class AuteurResource {
 
     private final Logger log = LoggerFactory.getLogger(AuteurResource.class);
@@ -32,10 +34,10 @@ public class AuteurResource {
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
 
-    private final AuteurService auteurService;
+    private final AuteurRepository auteurRepository;
 
-    public AuteurResource(AuteurService auteurService) {
-        this.auteurService = auteurService;
+    public AuteurResource(AuteurRepository auteurRepository) {
+        this.auteurRepository = auteurRepository;
     }
 
     /**
@@ -51,7 +53,7 @@ public class AuteurResource {
         if (auteur.getId() != null) {
             throw new BadRequestAlertException("A new auteur cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        Auteur result = auteurService.save(auteur);
+        Auteur result = auteurRepository.save(auteur);
         return ResponseEntity.created(new URI("/api/auteurs/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -72,7 +74,7 @@ public class AuteurResource {
         if (auteur.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
-        Auteur result = auteurService.save(auteur);
+        Auteur result = auteurRepository.save(auteur);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, auteur.getId().toString()))
             .body(result);
@@ -86,7 +88,7 @@ public class AuteurResource {
     @GetMapping("/auteurs")
     public List<Auteur> getAllAuteurs() {
         log.debug("REST request to get all Auteurs");
-        return auteurService.findAll();
+        return auteurRepository.findAll();
     }
 
     /**
@@ -98,7 +100,7 @@ public class AuteurResource {
     @GetMapping("/auteurs/{id}")
     public ResponseEntity<Auteur> getAuteur(@PathVariable Long id) {
         log.debug("REST request to get Auteur : {}", id);
-        Optional<Auteur> auteur = auteurService.findOne(id);
+        Optional<Auteur> auteur = auteurRepository.findById(id);
         return ResponseUtil.wrapOrNotFound(auteur);
     }
 
@@ -111,7 +113,7 @@ public class AuteurResource {
     @DeleteMapping("/auteurs/{id}")
     public ResponseEntity<Void> deleteAuteur(@PathVariable Long id) {
         log.debug("REST request to delete Auteur : {}", id);
-        auteurService.delete(id);
+        auteurRepository.deleteById(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }
 }

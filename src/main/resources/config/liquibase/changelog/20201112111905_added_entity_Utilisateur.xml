@@ -11,7 +11,7 @@
         Added the entity Utilisateur.
     -->
     <changeSet id="20201112111905-1" author="jhipster">
-        <createTable tableName="utilisateur" remarks="The Utilisateur entity.\n@author A true hipster">
+        <createTable tableName="utilisateur">
             <column name="id" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>
             </column>

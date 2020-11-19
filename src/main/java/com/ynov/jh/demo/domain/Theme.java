@@ -1,6 +1,5 @@
 package com.ynov.jh.demo.domain;
 
-import io.swagger.annotations.ApiModel;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -12,9 +11,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * The Theme entity.\n@author A true hipster
+ * A Theme.
  */
-@ApiModel(description = "The Theme entity.\n@author A true hipster")
 @Entity
 @Table(name = "theme")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

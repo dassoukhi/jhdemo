@@ -1,7 +1,7 @@
 package com.ynov.jh.demo.web.rest;
 
 import com.ynov.jh.demo.domain.Livre;
-import com.ynov.jh.demo.service.LivreService;
+import com.ynov.jh.demo.repository.LivreRepository;
 import com.ynov.jh.demo.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -23,6 +24,7 @@ import java.util.Optional;
  */
 @RestController
 @RequestMapping("/api")
+@Transactional
 public class LivreResource {
 
     private final Logger log = LoggerFactory.getLogger(LivreResource.class);
@@ -32,10 +34,10 @@ public class LivreResource {
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
 
-    private final LivreService livreService;
+    private final LivreRepository livreRepository;
 
-    public LivreResource(LivreService livreService) {
-        this.livreService = livreService;
+    public LivreResource(LivreRepository livreRepository) {
+        this.livreRepository = livreRepository;
     }
 
     /**
@@ -51,7 +53,7 @@ public class LivreResource {
         if (livre.getId() != null) {
             throw new BadRequestAlertException("A new livre cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        Livre result = livreService.save(livre);
+        Livre result = livreRepository.save(livre);
         return ResponseEntity.created(new URI("/api/livres/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -72,7 +74,7 @@ public class LivreResource {
         if (livre.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
-        Livre result = livreService.save(livre);
+        Livre result = livreRepository.save(livre);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, livre.getId().toString()))
             .body(result);
@@ -86,7 +88,7 @@ public class LivreResource {
     @GetMapping("/livres")
     public List<Livre> getAllLivres() {
         log.debug("REST request to get all Livres");
-        return livreService.findAll();
+        return livreRepository.findAll();
     }
 
     /**
@@ -98,7 +100,7 @@ public class LivreResource {
     @GetMapping("/livres/{id}")
     public ResponseEntity<Livre> getLivre(@PathVariable Long id) {
         log.debug("REST request to get Livre : {}", id);
-        Optional<Livre> livre = livreService.findOne(id);
+        Optional<Livre> livre = livreRepository.findById(id);
         return ResponseUtil.wrapOrNotFound(livre);
     }
 
@@ -111,7 +113,7 @@ public class LivreResource {
     @DeleteMapping("/livres/{id}")
     public ResponseEntity<Void> deleteLivre(@PathVariable Long id) {
         log.debug("REST request to delete Livre : {}", id);
-        livreService.delete(id);
+        livreRepository.deleteById(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }
 }

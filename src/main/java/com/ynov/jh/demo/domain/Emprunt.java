@@ -1,7 +1,6 @@
 package com.ynov.jh.demo.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import io.swagger.annotations.ApiModel;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -12,9 +11,8 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
- * The Emprunt entity.\n@author A true hipster
+ * A Emprunt.
  */
-@ApiModel(description = "The Emprunt entity.\n@author A true hipster")
 @Entity
 @Table(name = "emprunt")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -30,6 +28,10 @@ public class Emprunt implements Serializable {
     @NotNull
     @Column(name = "date_emprunt", nullable = false)
     private LocalDate dateEmprunt;
+
+    @OneToOne
+    @JoinColumn(unique = true)
+    private Exemplaire exemplaire;
 
     @ManyToOne
     @JsonIgnoreProperties(value = "emprunts", allowSetters = true)
@@ -55,6 +57,19 @@ public class Emprunt implements Serializable {
 
     public void setDateEmprunt(LocalDate dateEmprunt) {
         this.dateEmprunt = dateEmprunt;
+    }
+
+    public Exemplaire getExemplaire() {
+        return exemplaire;
+    }
+
+    public Emprunt exemplaire(Exemplaire exemplaire) {
+        this.exemplaire = exemplaire;
+        return this;
+    }
+
+    public void setExemplaire(Exemplaire exemplaire) {
+        this.exemplaire = exemplaire;
     }
 
     public Utilisateur getUtilisateur() {

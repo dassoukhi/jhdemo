@@ -3,7 +3,6 @@ package com.ynov.jh.demo.web.rest;
 import com.ynov.jh.demo.JhdemoApp;
 import com.ynov.jh.demo.domain.Emprunt;
 import com.ynov.jh.demo.repository.EmpruntRepository;
-import com.ynov.jh.demo.service.EmpruntService;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -37,9 +36,6 @@ public class EmpruntResourceIT {
 
     @Autowired
     private EmpruntRepository empruntRepository;
-
-    @Autowired
-    private EmpruntService empruntService;
 
     @Autowired
     private EntityManager em;
@@ -172,7 +168,7 @@ public class EmpruntResourceIT {
     @Transactional
     public void updateEmprunt() throws Exception {
         // Initialize the database
-        empruntService.save(emprunt);
+        empruntRepository.saveAndFlush(emprunt);
 
         int databaseSizeBeforeUpdate = empruntRepository.findAll().size();
 
@@ -215,7 +211,7 @@ public class EmpruntResourceIT {
     @Transactional
     public void deleteEmprunt() throws Exception {
         // Initialize the database
-        empruntService.save(emprunt);
+        empruntRepository.saveAndFlush(emprunt);
 
         int databaseSizeBeforeDelete = empruntRepository.findAll().size();
 

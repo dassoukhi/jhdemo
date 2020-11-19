@@ -12,6 +12,12 @@
                 <dd>
                     <span>{{ emprunt.dateEmprunt }}</span>
                 </dd>
+                <dt><span jhiTranslate="jhdemoApp.emprunt.exemplaire">Exemplaire</span></dt>
+                <dd>
+                    <div *ngIf="emprunt.exemplaire">
+                        <a [routerLink]="['/exemplaire', emprunt.exemplaire?.id, 'view']">{{ emprunt.exemplaire?.id }}</a>
+                    </div>
+                </dd>
                 <dt><span jhiTranslate="jhdemoApp.emprunt.utilisateur">Utilisateur</span></dt>
                 <dd>
                     <div *ngIf="emprunt.utilisateur">

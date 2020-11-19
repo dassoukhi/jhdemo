@@ -4,11 +4,16 @@ import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { IEmprunt, Emprunt } from 'app/shared/model/emprunt.model';
 import { EmpruntService } from './emprunt.service';
+import { IExemplaire } from 'app/shared/model/exemplaire.model';
+import { ExemplaireService } from 'app/entities/exemplaire/exemplaire.service';
 import { IUtilisateur } from 'app/shared/model/utilisateur.model';
 import { UtilisateurService } from 'app/entities/utilisateur/utilisateur.service';
+
+type SelectableEntity = IExemplaire | IUtilisateur;
 
 @Component({
   selector: 'jhi-emprunt-update',
@@ -16,17 +21,20 @@ import { UtilisateurService } from 'app/entities/utilisateur/utilisateur.service
 })
 export class EmpruntUpdateComponent implements OnInit {
   isSaving = false;
+  exemplaires: IExemplaire[] = [];
   utilisateurs: IUtilisateur[] = [];
   dateEmpruntDp: any;
 
   editForm = this.fb.group({
     id: [],
     dateEmprunt: [null, [Validators.required]],
+    exemplaire: [],
     utilisateur: [],
   });
 
   constructor(
     protected empruntService: EmpruntService,
+    protected exemplaireService: ExemplaireService,
     protected utilisateurService: UtilisateurService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
@@ -36,6 +44,28 @@ export class EmpruntUpdateComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ emprunt }) => {
       this.updateForm(emprunt);
 
+      this.exemplaireService
+        .query({ filter: 'emprunt-is-null' })
+        .pipe(
+          map((res: HttpResponse<IExemplaire[]>) => {
+            return res.body || [];
+          })
+        )
+        .subscribe((resBody: IExemplaire[]) => {
+          if (!emprunt.exemplaire || !emprunt.exemplaire.id) {
+            this.exemplaires = resBody;
+          } else {
+            this.exemplaireService
+              .find(emprunt.exemplaire.id)
+              .pipe(
+                map((subRes: HttpResponse<IExemplaire>) => {
+                  return subRes.body ? [subRes.body].concat(resBody) : resBody;
+                })
+              )
+              .subscribe((concatRes: IExemplaire[]) => (this.exemplaires = concatRes));
+          }
+        });
+
       this.utilisateurService.query().subscribe((res: HttpResponse<IUtilisateur[]>) => (this.utilisateurs = res.body || []));
     });
   }
@@ -44,6 +74,7 @@ export class EmpruntUpdateComponent implements OnInit {
     this.editForm.patchValue({
       id: emprunt.id,
       dateEmprunt: emprunt.dateEmprunt,
+      exemplaire: emprunt.exemplaire,
       utilisateur: emprunt.utilisateur,
     });
   }
@@ -67,6 +98,7 @@ export class EmpruntUpdateComponent implements OnInit {
       ...new Emprunt(),
       id: this.editForm.get(['id'])!.value,
       dateEmprunt: this.editForm.get(['dateEmprunt'])!.value,
+      exemplaire: this.editForm.get(['exemplaire'])!.value,
       utilisateur: this.editForm.get(['utilisateur'])!.value,
     };
   }
@@ -87,7 +119,7 @@ export class EmpruntUpdateComponent implements OnInit {
     this.isSaving = false;
   }
 
-  trackById(index: number, item: IUtilisateur): any {
+  trackById(index: number, item: SelectableEntity): any {
     return item.id;
   }
 }

@@ -24,14 +24,6 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="jhdemoApp.exemplaire.emprunt" for="field_emprunt">Emprunt</label>
-                    <select class="form-control" id="field_emprunt" name="emprunt" formControlName="emprunt">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="empruntOption.id === editForm.get('emprunt')!.value?.id ? editForm.get('emprunt')!.value : empruntOption" *ngFor="let empruntOption of emprunts; trackBy: trackById">{{ empruntOption.id }}</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
                     <label class="form-control-label" jhiTranslate="jhdemoApp.exemplaire.livre" for="field_livre">Livre</label>
                     <select class="form-control" id="field_livre" name="livre" formControlName="livre">
                         <option [ngValue]="null"></option>

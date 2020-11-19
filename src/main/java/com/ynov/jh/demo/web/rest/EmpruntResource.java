@@ -1,7 +1,7 @@
 package com.ynov.jh.demo.web.rest;
 
 import com.ynov.jh.demo.domain.Emprunt;
-import com.ynov.jh.demo.service.EmpruntService;
+import com.ynov.jh.demo.repository.EmpruntRepository;
 import com.ynov.jh.demo.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -23,6 +24,7 @@ import java.util.Optional;
  */
 @RestController
 @RequestMapping("/api")
+@Transactional
 public class EmpruntResource {
 
     private final Logger log = LoggerFactory.getLogger(EmpruntResource.class);
@@ -32,10 +34,10 @@ public class EmpruntResource {
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
 
-    private final EmpruntService empruntService;
+    private final EmpruntRepository empruntRepository;
 
-    public EmpruntResource(EmpruntService empruntService) {
-        this.empruntService = empruntService;
+    public EmpruntResource(EmpruntRepository empruntRepository) {
+        this.empruntRepository = empruntRepository;
     }
 
     /**
@@ -51,7 +53,7 @@ public class EmpruntResource {
         if (emprunt.getId() != null) {
             throw new BadRequestAlertException("A new emprunt cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        Emprunt result = empruntService.save(emprunt);
+        Emprunt result = empruntRepository.save(emprunt);
         return ResponseEntity.created(new URI("/api/emprunts/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -72,7 +74,7 @@ public class EmpruntResource {
         if (emprunt.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
-        Emprunt result = empruntService.save(emprunt);
+        Emprunt result = empruntRepository.save(emprunt);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, emprunt.getId().toString()))
             .body(result);
@@ -86,7 +88,7 @@ public class EmpruntResource {
     @GetMapping("/emprunts")
     public List<Emprunt> getAllEmprunts() {
         log.debug("REST request to get all Emprunts");
-        return empruntService.findAll();
+        return empruntRepository.findAll();
     }
 
     /**
@@ -98,7 +100,7 @@ public class EmpruntResource {
     @GetMapping("/emprunts/{id}")
     public ResponseEntity<Emprunt> getEmprunt(@PathVariable Long id) {
         log.debug("REST request to get Emprunt : {}", id);
-        Optional<Emprunt> emprunt = empruntService.findOne(id);
+        Optional<Emprunt> emprunt = empruntRepository.findById(id);
         return ResponseUtil.wrapOrNotFound(emprunt);
     }
 
@@ -111,7 +113,7 @@ public class EmpruntResource {
     @DeleteMapping("/emprunts/{id}")
     public ResponseEntity<Void> deleteEmprunt(@PathVariable Long id) {
         log.debug("REST request to delete Emprunt : {}", id);
-        empruntService.delete(id);
+        empruntRepository.deleteById(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }
 }

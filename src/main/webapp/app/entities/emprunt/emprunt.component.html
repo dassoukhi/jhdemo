@@ -24,6 +24,7 @@
                 <tr>
                     <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
                     <th scope="col" ><span jhiTranslate="jhdemoApp.emprunt.dateEmprunt">Date Emprunt</span></th>
+                    <th scope="col" ><span jhiTranslate="jhdemoApp.emprunt.exemplaire">Exemplaire</span></th>
                     <th scope="col" ><span jhiTranslate="jhdemoApp.emprunt.utilisateur">Utilisateur</span></th>
                     <th scope="col"></th>
                 </tr>
@@ -32,6 +33,11 @@
                 <tr *ngFor="let emprunt of emprunts ;trackBy: trackId">
                     <td><a [routerLink]="['/emprunt', emprunt.id, 'view']">{{ emprunt.id }}</a></td>
                     <td>{{ emprunt.dateEmprunt | date:'mediumDate' }}</td>
+                    <td>
+                        <div *ngIf="emprunt.exemplaire">
+                            <a [routerLink]="['/exemplaire', emprunt.exemplaire?.id, 'view']" >{{ emprunt.exemplaire?.id }}</a>
+                        </div>
+                    </td>
                     <td>
                         <div *ngIf="emprunt.utilisateur">
                             <a [routerLink]="['/utilisateur', emprunt.utilisateur?.id, 'view']" >{{ emprunt.utilisateur?.id }}</a>

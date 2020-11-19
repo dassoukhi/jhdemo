@@ -3,7 +3,6 @@ package com.ynov.jh.demo.web.rest;
 import com.ynov.jh.demo.JhdemoApp;
 import com.ynov.jh.demo.domain.Utilisateur;
 import com.ynov.jh.demo.repository.UtilisateurRepository;
-import com.ynov.jh.demo.service.UtilisateurService;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -52,9 +51,6 @@ public class UtilisateurResourceIT {
 
     @Autowired
     private UtilisateurRepository utilisateurRepository;
-
-    @Autowired
-    private UtilisateurService utilisateurService;
 
     @Autowired
     private EntityManager em;
@@ -307,7 +303,7 @@ public class UtilisateurResourceIT {
     @Transactional
     public void updateUtilisateur() throws Exception {
         // Initialize the database
-        utilisateurService.save(utilisateur);
+        utilisateurRepository.saveAndFlush(utilisateur);
 
         int databaseSizeBeforeUpdate = utilisateurRepository.findAll().size();
 
@@ -360,7 +356,7 @@ public class UtilisateurResourceIT {
     @Transactional
     public void deleteUtilisateur() throws Exception {
         // Initialize the database
-        utilisateurService.save(utilisateur);
+        utilisateurRepository.saveAndFlush(utilisateur);
 
         int databaseSizeBeforeDelete = utilisateurRepository.findAll().size();
 

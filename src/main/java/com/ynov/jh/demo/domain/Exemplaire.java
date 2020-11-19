@@ -1,7 +1,6 @@
 package com.ynov.jh.demo.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import io.swagger.annotations.ApiModel;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -11,9 +10,8 @@ import javax.validation.constraints.*;
 import java.io.Serializable;
 
 /**
- * The Exemplaire entity.\n@author A true hipster
+ * A Exemplaire.
  */
-@ApiModel(description = "The Exemplaire entity.\n@author A true hipster")
 @Entity
 @Table(name = "exemplaire")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -29,10 +27,6 @@ public class Exemplaire implements Serializable {
     @NotNull
     @Column(name = "disponibilite", nullable = false)
     private Boolean disponibilite;
-
-    @OneToOne
-    @JoinColumn(unique = true)
-    private Emprunt emprunt;
 
     @ManyToOne
     @JsonIgnoreProperties(value = "exemplaires", allowSetters = true)
@@ -58,19 +52,6 @@ public class Exemplaire implements Serializable {
 
     public void setDisponibilite(Boolean disponibilite) {
         this.disponibilite = disponibilite;
-    }
-
-    public Emprunt getEmprunt() {
-        return emprunt;
-    }
-
-    public Exemplaire emprunt(Emprunt emprunt) {
-        this.emprunt = emprunt;
-        return this;
-    }
-
-    public void setEmprunt(Emprunt emprunt) {
-        this.emprunt = emprunt;
     }
 
     public Livre getLivre() {

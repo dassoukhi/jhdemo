@@ -12,12 +12,6 @@
                 <dd>
                     <span>{{ exemplaire.disponibilite }}</span>
                 </dd>
-                <dt><span jhiTranslate="jhdemoApp.exemplaire.emprunt">Emprunt</span></dt>
-                <dd>
-                    <div *ngIf="exemplaire.emprunt">
-                        <a [routerLink]="['/emprunt', exemplaire.emprunt?.id, 'view']">{{ exemplaire.emprunt?.id }}</a>
-                    </div>
-                </dd>
                 <dt><span jhiTranslate="jhdemoApp.exemplaire.livre">Livre</span></dt>
                 <dd>
                     <div *ngIf="exemplaire.livre">

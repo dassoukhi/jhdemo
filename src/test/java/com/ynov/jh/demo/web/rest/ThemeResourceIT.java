@@ -3,7 +3,6 @@ package com.ynov.jh.demo.web.rest;
 import com.ynov.jh.demo.JhdemoApp;
 import com.ynov.jh.demo.domain.Theme;
 import com.ynov.jh.demo.repository.ThemeRepository;
-import com.ynov.jh.demo.service.ThemeService;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -35,9 +34,6 @@ public class ThemeResourceIT {
 
     @Autowired
     private ThemeRepository themeRepository;
-
-    @Autowired
-    private ThemeService themeService;
 
     @Autowired
     private EntityManager em;
@@ -170,7 +166,7 @@ public class ThemeResourceIT {
     @Transactional
     public void updateTheme() throws Exception {
         // Initialize the database
-        themeService.save(theme);
+        themeRepository.saveAndFlush(theme);
 
         int databaseSizeBeforeUpdate = themeRepository.findAll().size();
 
@@ -213,7 +209,7 @@ public class ThemeResourceIT {
     @Transactional
     public void deleteTheme() throws Exception {
         // Initialize the database
-        themeService.save(theme);
+        themeRepository.saveAndFlush(theme);
 
         int databaseSizeBeforeDelete = themeRepository.findAll().size();
 

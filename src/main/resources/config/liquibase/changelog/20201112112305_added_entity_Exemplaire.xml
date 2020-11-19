@@ -11,15 +11,12 @@
         Added the entity Exemplaire.
     -->
     <changeSet id="20201112112305-1" author="jhipster">
-        <createTable tableName="exemplaire" remarks="The Exemplaire entity.\n@author A true hipster">
+        <createTable tableName="exemplaire">
             <column name="id" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="disponibilite" type="boolean">
                 <constraints nullable="false" />
-            </column>
-            <column name="emprunt_id" type="bigint">
-                <constraints unique="true" nullable="true" uniqueConstraintName="ux_exemplaire_emprunt_id" />
             </column>
             <column name="livre_id" type="bigint">
                 <constraints nullable="true" />

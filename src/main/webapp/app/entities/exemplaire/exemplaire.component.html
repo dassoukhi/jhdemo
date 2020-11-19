@@ -24,7 +24,6 @@
                 <tr>
                     <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
                     <th scope="col" ><span jhiTranslate="jhdemoApp.exemplaire.disponibilite">Disponibilite</span></th>
-                    <th scope="col" ><span jhiTranslate="jhdemoApp.exemplaire.emprunt">Emprunt</span></th>
                     <th scope="col" ><span jhiTranslate="jhdemoApp.exemplaire.livre">Livre</span></th>
                     <th scope="col"></th>
                 </tr>
@@ -33,11 +32,6 @@
                 <tr *ngFor="let exemplaire of exemplaires ;trackBy: trackId">
                     <td><a [routerLink]="['/exemplaire', exemplaire.id, 'view']">{{ exemplaire.id }}</a></td>
                     <td>{{ exemplaire.disponibilite }}</td>
-                    <td>
-                        <div *ngIf="exemplaire.emprunt">
-                            <a [routerLink]="['/emprunt', exemplaire.emprunt?.id, 'view']" >{{ exemplaire.emprunt?.id }}</a>
-                        </div>
-                    </td>
                     <td>
                         <div *ngIf="exemplaire.livre">
                             <a [routerLink]="['/livre', exemplaire.livre?.id, 'view']" >{{ exemplaire.livre?.id }}</a>

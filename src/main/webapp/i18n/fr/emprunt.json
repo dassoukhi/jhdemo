@@ -17,6 +17,7 @@
         "title": "Emprunt"
       },
       "dateEmprunt": "Date Emprunt",
+      "exemplaire": "Exemplaire",
       "utilisateur": "Utilisateur"
     }
   }

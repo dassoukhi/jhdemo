@@ -3,7 +3,6 @@ package com.ynov.jh.demo.web.rest;
 import com.ynov.jh.demo.JhdemoApp;
 import com.ynov.jh.demo.domain.Livre;
 import com.ynov.jh.demo.repository.LivreRepository;
-import com.ynov.jh.demo.service.LivreService;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -44,9 +43,6 @@ public class LivreResourceIT {
 
     @Autowired
     private LivreRepository livreRepository;
-
-    @Autowired
-    private LivreService livreService;
 
     @Autowired
     private EntityManager em;
@@ -251,7 +247,7 @@ public class LivreResourceIT {
     @Transactional
     public void updateLivre() throws Exception {
         // Initialize the database
-        livreService.save(livre);
+        livreRepository.saveAndFlush(livre);
 
         int databaseSizeBeforeUpdate = livreRepository.findAll().size();
 
@@ -300,7 +296,7 @@ public class LivreResourceIT {
     @Transactional
     public void deleteLivre() throws Exception {
         // Initialize the database
-        livreService.save(livre);
+        livreRepository.saveAndFlush(livre);
 
         int databaseSizeBeforeDelete = livreRepository.findAll().size();
 

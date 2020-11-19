@@ -11,14 +11,6 @@
   ],
   "relationships": [
     {
-      "relationshipType": "one-to-one",
-      "otherEntityName": "emprunt",
-      "otherEntityRelationshipName": "exemplaire",
-      "relationshipName": "emprunt",
-      "otherEntityField": "id",
-      "ownerSide": true
-    },
-    {
       "relationshipType": "many-to-one",
       "otherEntityName": "livre",
       "otherEntityRelationshipName": "exemplaire",
@@ -30,12 +22,11 @@
   "entityTableName": "exemplaire",
   "dto": "no",
   "pagination": "no",
-  "service": "serviceImpl",
+  "service": "no",
   "jpaMetamodelFiltering": false,
   "fluentMethods": true,
   "readOnly": false,
   "embedded": false,
   "clientRootFolder": "",
-  "applications": "*",
-  "javadoc": "The Exemplaire entity.\\n@author A true hipster"
+  "applications": "*"
 }

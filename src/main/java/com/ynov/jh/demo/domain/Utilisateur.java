@@ -1,6 +1,5 @@
 package com.ynov.jh.demo.domain;
 
-import io.swagger.annotations.ApiModel;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -13,9 +12,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * The Utilisateur entity.\n@author A true hipster
+ * A Utilisateur.
  */
-@ApiModel(description = "The Utilisateur entity.\n@author A true hipster")
 @Entity
 @Table(name = "utilisateur")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
