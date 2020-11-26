@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\main",
+    "\\src\\main\\webapp",
+    "\\src\\main\\webapp\\app",
+    "\\src\\main\\webapp\\app\\biblio",
+    "\\src\\main\\webapp\\app\\biblio\\livre-search-autor",
+    "\\src\\main\\webapp\\app\\biblio\\livre-search-them",
+    "\\src\\main\\webapp\\app\\layouts",
+    "\\src\\main\\webapp\\app\\layouts\\navbar"
+  ],
+  "SelectedNode": "\\src\\main\\webapp\\app\\biblio\\livre-search-autor\\livresearchautor.component.ts",
+  "PreviewInSolutionExplorer": false
+}
