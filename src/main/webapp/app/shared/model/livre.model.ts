@@ -11,8 +11,8 @@ export interface ILivre {
   code?: string;
   emplacement?: IEmplacement;
   exemplaires?: IExemplaire[];
-  theme?: ITheme;
-  auteur?: IAuteur;
+  themes?: ITheme[];
+  auteurs?: IAuteur[];
 }
 
 export class Livre implements ILivre {
@@ -24,7 +24,7 @@ export class Livre implements ILivre {
     public code?: string,
     public emplacement?: IEmplacement,
     public exemplaires?: IExemplaire[],
-    public theme?: ITheme,
-    public auteur?: IAuteur
+    public themes?: ITheme[],
+    public auteurs?: IAuteur[]
   ) {}
 }

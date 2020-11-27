@@ -30,12 +30,6 @@
             <column name="emplacement_id" type="bigint">
                 <constraints unique="true" nullable="true" uniqueConstraintName="ux_livre_emplacement_id" />
             </column>
-            <column name="theme_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
-            <column name="auteur_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
     </changeSet>

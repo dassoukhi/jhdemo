@@ -48,18 +48,20 @@
       "relationshipName": "exemplaire"
     },
     {
-      "relationshipType": "many-to-one",
+      "relationshipType": "many-to-many",
       "otherEntityName": "theme",
       "otherEntityRelationshipName": "livre",
       "relationshipName": "theme",
-      "otherEntityField": "id"
+      "otherEntityField": "id",
+      "ownerSide": false
     },
     {
-      "relationshipType": "many-to-one",
+      "relationshipType": "many-to-many",
       "otherEntityName": "auteur",
       "otherEntityRelationshipName": "livre",
       "relationshipName": "auteur",
-      "otherEntityField": "id"
+      "otherEntityField": "id",
+      "ownerSide": false
     }
   ],
   "changelogDate": "20201111200952",

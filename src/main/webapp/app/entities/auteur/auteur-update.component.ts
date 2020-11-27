@@ -7,6 +7,8 @@ import { Observable } from 'rxjs';
 
 import { IAuteur, Auteur } from 'app/shared/model/auteur.model';
 import { AuteurService } from './auteur.service';
+import { ILivre } from 'app/shared/model/livre.model';
+import { LivreService } from 'app/entities/livre/livre.service';
 
 @Component({
   selector: 'jhi-auteur-update',
@@ -14,17 +16,26 @@ import { AuteurService } from './auteur.service';
 })
 export class AuteurUpdateComponent implements OnInit {
   isSaving = false;
+  livres: ILivre[] = [];
 
   editForm = this.fb.group({
     id: [],
     auteur: [null, [Validators.required]],
+    livres: [],
   });
 
-  constructor(protected auteurService: AuteurService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
+  constructor(
+    protected auteurService: AuteurService,
+    protected livreService: LivreService,
+    protected activatedRoute: ActivatedRoute,
+    private fb: FormBuilder
+  ) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ auteur }) => {
       this.updateForm(auteur);
+
+      this.livreService.query().subscribe((res: HttpResponse<ILivre[]>) => (this.livres = res.body || []));
     });
   }
 
@@ -32,6 +43,7 @@ export class AuteurUpdateComponent implements OnInit {
     this.editForm.patchValue({
       id: auteur.id,
       auteur: auteur.auteur,
+      livres: auteur.livres,
     });
   }
 
@@ -54,6 +66,7 @@ export class AuteurUpdateComponent implements OnInit {
       ...new Auteur(),
       id: this.editForm.get(['id'])!.value,
       auteur: this.editForm.get(['auteur'])!.value,
+      livres: this.editForm.get(['livres'])!.value,
     };
   }
 
@@ -71,5 +84,20 @@ export class AuteurUpdateComponent implements OnInit {
 
   protected onSaveError(): void {
     this.isSaving = false;
+  }
+
+  trackById(index: number, item: ILivre): any {
+    return item.id;
+  }
+
+  getSelected(selectedVals: ILivre[], option: ILivre): ILivre {
+    if (selectedVals) {
+      for (let i = 0; i < selectedVals.length; i++) {
+        if (option.id === selectedVals[i].id) {
+          return selectedVals[i];
+        }
+      }
+    }
+    return option;
   }
 }

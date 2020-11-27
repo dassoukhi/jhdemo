@@ -14,17 +14,5 @@
                                  referencedColumnNames="id"
                                  referencedTableName="emplacement"/>
 
-        <addForeignKeyConstraint baseColumnNames="theme_id"
-                                 baseTableName="livre"
-                                 constraintName="fk_livre_theme_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="theme"/>
-
-        <addForeignKeyConstraint baseColumnNames="auteur_id"
-                                 baseTableName="livre"
-                                 constraintName="fk_livre_auteur_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="auteur"/>
-
     </changeSet>
 </databaseChangeLog>

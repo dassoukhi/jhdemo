@@ -10,10 +10,10 @@ import { IEmprunt, Emprunt } from 'app/shared/model/emprunt.model';
 import { EmpruntService } from './emprunt.service';
 import { IExemplaire } from 'app/shared/model/exemplaire.model';
 import { ExemplaireService } from 'app/entities/exemplaire/exemplaire.service';
-import { IUtilisateur } from 'app/shared/model/utilisateur.model';
-import { UtilisateurService } from 'app/entities/utilisateur/utilisateur.service';
+import { IUser } from 'app/core/user/user.model';
+import { UserService } from 'app/core/user/user.service';
 
-type SelectableEntity = IExemplaire | IUtilisateur;
+type SelectableEntity = IExemplaire | IUser;
 
 @Component({
   selector: 'jhi-emprunt-update',
@@ -22,20 +22,20 @@ type SelectableEntity = IExemplaire | IUtilisateur;
 export class EmpruntUpdateComponent implements OnInit {
   isSaving = false;
   exemplaires: IExemplaire[] = [];
-  utilisateurs: IUtilisateur[] = [];
+  users: IUser[] = [];
   dateEmpruntDp: any;
 
   editForm = this.fb.group({
     id: [],
     dateEmprunt: [null, [Validators.required]],
     exemplaire: [],
-    utilisateur: [],
+    user: [],
   });
 
   constructor(
     protected empruntService: EmpruntService,
     protected exemplaireService: ExemplaireService,
-    protected utilisateurService: UtilisateurService,
+    protected userService: UserService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
@@ -66,7 +66,7 @@ export class EmpruntUpdateComponent implements OnInit {
           }
         });
 
-      this.utilisateurService.query().subscribe((res: HttpResponse<IUtilisateur[]>) => (this.utilisateurs = res.body || []));
+      this.userService.query().subscribe((res: HttpResponse<IUser[]>) => (this.users = res.body || []));
     });
   }
 
@@ -75,7 +75,7 @@ export class EmpruntUpdateComponent implements OnInit {
       id: emprunt.id,
       dateEmprunt: emprunt.dateEmprunt,
       exemplaire: emprunt.exemplaire,
-      utilisateur: emprunt.utilisateur,
+      user: emprunt.user,
     });
   }
 
@@ -99,7 +99,7 @@ export class EmpruntUpdateComponent implements OnInit {
       id: this.editForm.get(['id'])!.value,
       dateEmprunt: this.editForm.get(['dateEmprunt'])!.value,
       exemplaire: this.editForm.get(['exemplaire'])!.value,
-      utilisateur: this.editForm.get(['utilisateur'])!.value,
+      user: this.editForm.get(['user'])!.value,
     };
   }
 

@@ -20,10 +20,10 @@
     },
     {
       "relationshipType": "many-to-one",
-      "otherEntityName": "utilisateur",
+      "otherEntityName": "user",
       "otherEntityRelationshipName": "emprunt",
-      "relationshipName": "utilisateur",
-      "otherEntityField": "id"
+      "relationshipName": "user",
+      "otherEntityField": "login"
     }
   ],
   "changelogDate": "20201114183311",

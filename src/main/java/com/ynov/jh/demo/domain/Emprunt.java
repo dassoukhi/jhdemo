@@ -35,7 +35,7 @@ public class Emprunt implements Serializable {
 
     @ManyToOne
     @JsonIgnoreProperties(value = "emprunts", allowSetters = true)
-    private Utilisateur utilisateur;
+    private User user;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -72,17 +72,17 @@ public class Emprunt implements Serializable {
         this.exemplaire = exemplaire;
     }
 
-    public Utilisateur getUtilisateur() {
-        return utilisateur;
+    public User getUser() {
+        return user;
     }
 
-    public Emprunt utilisateur(Utilisateur utilisateur) {
-        this.utilisateur = utilisateur;
+    public Emprunt user(User user) {
+        this.user = user;
         return this;
     }
 
-    public void setUtilisateur(Utilisateur utilisateur) {
-        this.utilisateur = utilisateur;
+    public void setUser(User user) {
+        this.user = user;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

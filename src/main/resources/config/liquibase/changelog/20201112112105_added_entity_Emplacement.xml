@@ -11,7 +11,7 @@
         Added the entity Emplacement.
     -->
     <changeSet id="20201112112105-1" author="jhipster">
-        <createTable tableName="emplacement" remarks="The Emplacement entity.\n@author A true hipster">
+        <createTable tableName="emplacement">
             <column name="id" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>
             </column>

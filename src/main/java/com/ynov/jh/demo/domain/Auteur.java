@@ -29,8 +29,11 @@ public class Auteur implements Serializable {
     @Column(name = "auteur", nullable = false)
     private String auteur;
 
-    @OneToMany(mappedBy = "auteur")
+    @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @JoinTable(name = "auteur_livre",
+               joinColumns = @JoinColumn(name = "auteur_id", referencedColumnName = "id"),
+               inverseJoinColumns = @JoinColumn(name = "livre_id", referencedColumnName = "id"))
     private Set<Livre> livres = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -66,13 +69,13 @@ public class Auteur implements Serializable {
 
     public Auteur addLivre(Livre livre) {
         this.livres.add(livre);
-        livre.setAuteur(this);
+        livre.getAuteurs().add(this);
         return this;
     }
 
     public Auteur removeLivre(Livre livre) {
         this.livres.remove(livre);
-        livre.setAuteur(null);
+        livre.getAuteurs().remove(this);
         return this;
     }
 

@@ -14,9 +14,17 @@
                 </a>
             </li>
             <li>
-                <a class="nav-item" [routerLink]="['/livre']" (click)="collapseNavbar()">
+                <a class="nav-item" routerLink='biblio/search' (click)="collapseNavbar()">
                     <span class="home"></span>
-                    <span jhiTranslate="global.bibliothèque" class="navbar-title">Bibliothèque</span>
+                    <span class="navbar-title">search</span>
+                </a>
+                <a class="nav-item" routerLink='biblio/searchbyautor' (click)="collapseNavbar()">
+                    <span class="home"></span>
+                    <span class="navbar-title">searchautotr</span>
+                </a>
+                <a class="nav-item" routerLink='biblio/searchbytitre' (click)="collapseNavbar()">
+                    <span class="home"></span>
+                    <span class="navbar-title">searchtitre</span>
                 </a>
             </li>
             <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
@@ -30,7 +38,7 @@
                     </span>
                 </a>
                 <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu">
-                    <li>
+                    <!-- <li>
                         <a class="dropdown-item" routerLink="region" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
                             <span jhiTranslate="global.menu.entities.region">Region</span>
@@ -77,19 +85,14 @@
                             <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
                             <span jhiTranslate="global.menu.entities.jobHistory">Job History</span>
                         </a>
-                    </li>
+                    </li> -->
                     <li>
                         <a class="dropdown-item" routerLink="livre" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
                             <span jhiTranslate="global.menu.entities.livre">Livre</span>
                         </a>
                     </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="utilisateur" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.utilisateur">Utilisateur</span>
-                        </a>
-                    </li>
+                   
                     <li>
                         <a class="dropdown-item" routerLink="auteur" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>

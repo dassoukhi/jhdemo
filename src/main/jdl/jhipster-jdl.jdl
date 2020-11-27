@@ -1,83 +1,46 @@
 entity Livre {
-	titre String required unique,
-	description String required,
-	isbn String required unique,
-	code String required
+    titre String required unique,
+    description String required,
+    isbn String required unique,
+    code String required
 }
-
-
-entity Utilisateur {
-		nom String required,
-		prenom String required,
-		dateNaissance LocalDate required,
-		role String required,
-		pseudo String required unique,
-		motDePasse String required
-}
-
-
+ 
 entity Auteur {
-	auteur String required
+    auteur String required
 }
-
-/**
- * The Emplacement entity.
- * @author A true hipster
- */
+ 
 entity Emplacement {
-	nomEplacement String required
+    nomEplacement String required
 }
-
-
+ 
 entity Theme {
-	theme String maxlength(45) required
+    theme String maxlength(45) required
 }
-
-
+ 
 entity Exemplaire {
-	disponibilite Boolean required
+    disponibilite Boolean required
 }
-
-
+ 
 entity Emprunt {
-	dateEmprunt LocalDate required
+    dateEmprunt LocalDate required
 }
-
-
-
-
+ 
 relationship OneToOne {
     Emprunt{exemplaire} to Exemplaire,
     Livre{emplacement} to Emplacement
 }
-
-relationship OneToMany {
-    Utilisateur to Emprunt{utilisateur},
-    Livre to Exemplaire{livre},
-    Theme to Livre{theme},
-	Auteur to Livre{auteur}
+ 
+relationship ManyToOne {
+    Emprunt{user(login)} to User
 }
 
+ 
 
+relationship OneToMany {
+    Livre to Exemplaire{livre}
+}
 
-
-// defining multiple OneToMany relationships with comments
-
-
-
-
-
-// Set pagination options
-//paginate JobHistory, Employee with infinite-scroll
-//paginate Job with pagination
-
-// Use Data Transfer Objects (DTO)
-// dto * with mapstruct
-
-// Set service options to all except few
-//service all with serviceImpl except Employee, Job
-
-// Set an angular suffix
-// angularSuffix * with mySuffix
-
-// defining multiple OneToMany relationships with comments
+relationship ManyToMany {
+    Theme{livre(titre)} to Livre{theme},
+    Auteur{livre(titre)} to Livre{auteur}
+}

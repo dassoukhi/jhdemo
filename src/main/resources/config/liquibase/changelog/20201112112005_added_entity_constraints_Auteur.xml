@@ -8,11 +8,17 @@
     -->
     <changeSet id="20201112112005-2" author="jhipster">
         
+        <addForeignKeyConstraint baseColumnNames="auteur_id"
+                                 baseTableName="auteur_livre"
+                                 constraintName="fk_auteur_livre_auteur_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="auteur"/>
+
         <addForeignKeyConstraint baseColumnNames="livre_id"
-                                 baseTableName="auteur"
-                                 constraintName="fk_auteur_livre_id"
+                                 baseTableName="auteur_livre"
+                                 constraintName="fk_auteur_livre_livre_id"
                                  referencedColumnNames="id"
                                  referencedTableName="livre"/>
-
+        
     </changeSet>
 </databaseChangeLog>

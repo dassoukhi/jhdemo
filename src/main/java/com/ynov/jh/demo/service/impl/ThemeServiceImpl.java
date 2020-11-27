@@ -1,6 +1,7 @@
 package com.ynov.jh.demo.service.impl;
 
 import com.ynov.jh.demo.service.ThemeService;
+import com.ynov.jh.demo.domain.Livre;
 import com.ynov.jh.demo.domain.Theme;
 import com.ynov.jh.demo.repository.ThemeRepository;
 import org.slf4j.Logger;
@@ -53,4 +54,10 @@ public class ThemeServiceImpl implements ThemeService {
         log.debug("Request to delete Theme : {}", id);
         themeRepository.deleteById(id);
     }
+
+	@Override
+	public List<Livre> findByTheme(String theme) {
+		// TODO Auto-generated method stub
+		return themeRepository.findLivresByTheme(theme);
+	}
 }

@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="col-md-3">
+        <span class="hipster img-fluid rounded"></span>
+    </div>
+
+    <div id="Content" class="col-md-3">
+        <div>
+            <input type="search" class="form-control" id="">
+        </div>
+
+        <div id="search-type">
+            <p>Choisir nationalité</p>
+            <p>
+                Auteur: <input type="radio" name="type1" /><br />
+                Thème: <input type="radio" name="type2" /><br />
+                Titre: <input type="radio" name="type3" />
+            </p>
+        </div>
+
+        <div>
+            <a [routerLink]="['/biblio/searchbyautor']" >autor</a>
+            <a [routerLink]="['/biblio/searchbythem']" >them</a>
+            <a [routerLink]="['/biblio/searchbytitre']" >titre</a>
+        </div>
+        <div>
+            <button type="button" class="btn btn-outline-secondary">Valider</button>
+            <button type="button" class="btn btn-outline-secondary">Effacer</button>
+        </div>
+    </div>
+</div>

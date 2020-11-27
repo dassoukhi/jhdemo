@@ -1,5 +1,6 @@
 package com.ynov.jh.demo.service;
 
+import com.ynov.jh.demo.domain.Livre;
 import com.ynov.jh.demo.domain.Theme;
 
 import java.util.List;
@@ -24,6 +25,9 @@ public interface ThemeService {
      * @return the list of entities.
      */
     List<Theme> findAll();
+    
+    
+    List<Livre> findByTheme(String theme);
 
 
     /**

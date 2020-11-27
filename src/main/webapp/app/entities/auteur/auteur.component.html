@@ -24,6 +24,7 @@
                 <tr>
                     <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
                     <th scope="col" ><span jhiTranslate="jhdemoApp.auteur.auteur">Auteur</span></th>
+                    <th scope="col" ><span jhiTranslate="jhdemoApp.auteur.livre">Livre</span></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -31,6 +32,11 @@
                 <tr *ngFor="let auteur of auteurs ;trackBy: trackId">
                     <td><a [routerLink]="['/auteur', auteur.id, 'view']">{{ auteur.id }}</a></td>
                     <td>{{ auteur.auteur }}</td>
+                    <td>
+                        <span *ngFor="let livre of auteur.livres; let last = last">
+                            <a class="form-control-static" [routerLink]="['/livre', livre?.id, 'view']">{{ livre.titre }}</a>{{ last ? '' : ', ' }}
+                        </span>
+                    </td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"

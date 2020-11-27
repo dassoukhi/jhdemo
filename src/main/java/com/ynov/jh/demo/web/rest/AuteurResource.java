@@ -83,12 +83,13 @@ public class AuteurResource {
     /**
      * {@code GET  /auteurs} : get all the auteurs.
      *
+     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of auteurs in body.
      */
     @GetMapping("/auteurs")
-    public List<Auteur> getAllAuteurs() {
+    public List<Auteur> getAllAuteurs(@RequestParam(required = false, defaultValue = "false") boolean eagerload) {
         log.debug("REST request to get all Auteurs");
-        return auteurRepository.findAll();
+        return auteurRepository.findAllWithEagerRelationships();
     }
 
     /**
@@ -100,7 +101,7 @@ public class AuteurResource {
     @GetMapping("/auteurs/{id}")
     public ResponseEntity<Auteur> getAuteur(@PathVariable Long id) {
         log.debug("REST request to get Auteur : {}", id);
-        Optional<Auteur> auteur = auteurRepository.findById(id);
+        Optional<Auteur> auteur = auteurRepository.findOneWithEagerRelationships(id);
         return ResponseUtil.wrapOrNotFound(auteur);
     }
 

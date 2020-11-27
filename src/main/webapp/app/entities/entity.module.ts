@@ -41,10 +41,6 @@ import { RouterModule } from '@angular/router';
         loadChildren: () => import('./livre/livre.module').then(m => m.JhdemoLivreModule),
       },
       {
-        path: 'utilisateur',
-        loadChildren: () => import('./utilisateur/utilisateur.module').then(m => m.JhdemoUtilisateurModule),
-      },
-      {
         path: 'auteur',
         loadChildren: () => import('./auteur/auteur.module').then(m => m.JhdemoAuteurModule),
       },
@@ -63,6 +59,10 @@ import { RouterModule } from '@angular/router';
       {
         path: 'emprunt',
         loadChildren: () => import('./emprunt/emprunt.module').then(m => m.JhdemoEmpruntModule),
+      },
+      {
+        path: 'biblio',
+        loadChildren: () => import('../biblio/biblio.module').then(m => m.JhdemoBiblioModule),
       },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),

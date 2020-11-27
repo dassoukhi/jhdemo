@@ -7,6 +7,8 @@ import { Observable } from 'rxjs';
 
 import { ITheme, Theme } from 'app/shared/model/theme.model';
 import { ThemeService } from './theme.service';
+import { ILivre } from 'app/shared/model/livre.model';
+import { LivreService } from 'app/entities/livre/livre.service';
 
 @Component({
   selector: 'jhi-theme-update',
@@ -14,17 +16,26 @@ import { ThemeService } from './theme.service';
 })
 export class ThemeUpdateComponent implements OnInit {
   isSaving = false;
+  livres: ILivre[] = [];
 
   editForm = this.fb.group({
     id: [],
     theme: [null, [Validators.required, Validators.maxLength(45)]],
+    livres: [],
   });
 
-  constructor(protected themeService: ThemeService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
+  constructor(
+    protected themeService: ThemeService,
+    protected livreService: LivreService,
+    protected activatedRoute: ActivatedRoute,
+    private fb: FormBuilder
+  ) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ theme }) => {
       this.updateForm(theme);
+
+      this.livreService.query().subscribe((res: HttpResponse<ILivre[]>) => (this.livres = res.body || []));
     });
   }
 
@@ -32,6 +43,7 @@ export class ThemeUpdateComponent implements OnInit {
     this.editForm.patchValue({
       id: theme.id,
       theme: theme.theme,
+      livres: theme.livres,
     });
   }
 
@@ -54,6 +66,7 @@ export class ThemeUpdateComponent implements OnInit {
       ...new Theme(),
       id: this.editForm.get(['id'])!.value,
       theme: this.editForm.get(['theme'])!.value,
+      livres: this.editForm.get(['livres'])!.value,
     };
   }
 
@@ -71,5 +84,20 @@ export class ThemeUpdateComponent implements OnInit {
 
   protected onSaveError(): void {
     this.isSaving = false;
+  }
+
+  trackById(index: number, item: ILivre): any {
+    return item.id;
+  }
+
+  getSelected(selectedVals: ILivre[], option: ILivre): ILivre {
+    if (selectedVals) {
+      for (let i = 0; i < selectedVals.length; i++) {
+        if (option.id === selectedVals[i].id) {
+          return selectedVals[i];
+        }
+      }
+    }
+    return option;
   }
 }

@@ -13,10 +13,12 @@
   ],
   "relationships": [
     {
-      "relationshipType": "one-to-many",
+      "relationshipType": "many-to-many",
       "otherEntityName": "livre",
       "otherEntityRelationshipName": "theme",
-      "relationshipName": "livre"
+      "relationshipName": "livre",
+      "otherEntityField": "titre",
+      "ownerSide": true
     }
   ],
   "changelogDate": "20201112112205",

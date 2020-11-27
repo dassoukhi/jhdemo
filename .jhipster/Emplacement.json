@@ -20,6 +20,5 @@
   "readOnly": false,
   "embedded": false,
   "clientRootFolder": "",
-  "applications": "*",
-  "javadoc": "The Emplacement entity.\\n@author A true hipster"
+  "applications": "*"
 }

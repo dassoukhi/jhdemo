@@ -30,8 +30,11 @@ public class Theme implements Serializable {
     @Column(name = "theme", length = 45, nullable = false)
     private String theme;
 
-    @OneToMany(mappedBy = "theme")
+    @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @JoinTable(name = "theme_livre",
+               joinColumns = @JoinColumn(name = "theme_id", referencedColumnName = "id"),
+               inverseJoinColumns = @JoinColumn(name = "livre_id", referencedColumnName = "id"))
     private Set<Livre> livres = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -67,13 +70,13 @@ public class Theme implements Serializable {
 
     public Theme addLivre(Livre livre) {
         this.livres.add(livre);
-        livre.setTheme(this);
+        livre.getThemes().add(this);
         return this;
     }
 
     public Theme removeLivre(Livre livre) {
         this.livres.remove(livre);
-        livre.setTheme(null);
+        livre.getThemes().remove(this);
         return this;
     }
 

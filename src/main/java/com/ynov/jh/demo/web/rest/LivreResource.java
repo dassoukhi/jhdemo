@@ -90,6 +90,20 @@ public class LivreResource {
         log.debug("REST request to get all Livres");
         return livreRepository.findAll();
     }
+ 
+    
+    @GetMapping("/livre_byTheme")
+    public List<Livre> getAllTLivreByTheme(@RequestParam(required = false, defaultValue = "") String theme) {
+        log.debug("REST request to get all Livres by theme");
+        return livreRepository.findAllByTheme(theme);
+    }
+    
+    
+    @GetMapping("/livre_by_auteur")
+    public List<Livre> getAllTLivreByAuteur(@RequestParam(required = false, defaultValue = "") String auteur) {
+        log.debug("REST request to get all Livres by auteur");
+        return livreRepository.findAllByAuteur(auteur);
+    }
 
     /**
      * {@code GET  /livres/:id} : get the "id" livre.
@@ -101,6 +115,13 @@ public class LivreResource {
     public ResponseEntity<Livre> getLivre(@PathVariable Long id) {
         log.debug("REST request to get Livre : {}", id);
         Optional<Livre> livre = livreRepository.findById(id);
+        return ResponseUtil.wrapOrNotFound(livre);
+    }
+    
+    @GetMapping("/livres_by_titre/{titre}")
+    public ResponseEntity<Livre> getLivreByTitre(@PathVariable String titre) {
+        log.debug("REST request to get Livre : {}", titre);
+        Optional<Livre> livre = livreRepository.findByTitre(titre);
         return ResponseUtil.wrapOrNotFound(livre);
     }
 

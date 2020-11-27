@@ -1,6 +1,5 @@
 package com.ynov.jh.demo.domain;
 
-import io.swagger.annotations.ApiModel;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -10,9 +9,8 @@ import javax.validation.constraints.*;
 import java.io.Serializable;
 
 /**
- * The Emplacement entity.\n@author A true hipster
+ * A Emplacement.
  */
-@ApiModel(description = "The Emplacement entity.\n@author A true hipster")
 @Entity
 @Table(name = "emplacement")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

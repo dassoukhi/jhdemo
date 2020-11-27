@@ -10,12 +10,6 @@ import { ILivre, Livre } from 'app/shared/model/livre.model';
 import { LivreService } from './livre.service';
 import { IEmplacement } from 'app/shared/model/emplacement.model';
 import { EmplacementService } from 'app/entities/emplacement/emplacement.service';
-import { ITheme } from 'app/shared/model/theme.model';
-import { ThemeService } from 'app/entities/theme/theme.service';
-import { IAuteur } from 'app/shared/model/auteur.model';
-import { AuteurService } from 'app/entities/auteur/auteur.service';
-
-type SelectableEntity = IEmplacement | ITheme | IAuteur;
 
 @Component({
   selector: 'jhi-livre-update',
@@ -24,8 +18,6 @@ type SelectableEntity = IEmplacement | ITheme | IAuteur;
 export class LivreUpdateComponent implements OnInit {
   isSaving = false;
   emplacements: IEmplacement[] = [];
-  themes: ITheme[] = [];
-  auteurs: IAuteur[] = [];
 
   editForm = this.fb.group({
     id: [],
@@ -34,15 +26,11 @@ export class LivreUpdateComponent implements OnInit {
     isbn: [null, [Validators.required]],
     code: [null, [Validators.required]],
     emplacement: [],
-    theme: [],
-    auteur: [],
   });
 
   constructor(
     protected livreService: LivreService,
     protected emplacementService: EmplacementService,
-    protected themeService: ThemeService,
-    protected auteurService: AuteurService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
@@ -72,10 +60,6 @@ export class LivreUpdateComponent implements OnInit {
               .subscribe((concatRes: IEmplacement[]) => (this.emplacements = concatRes));
           }
         });
-
-      this.themeService.query().subscribe((res: HttpResponse<ITheme[]>) => (this.themes = res.body || []));
-
-      this.auteurService.query().subscribe((res: HttpResponse<IAuteur[]>) => (this.auteurs = res.body || []));
     });
   }
 
@@ -87,8 +71,6 @@ export class LivreUpdateComponent implements OnInit {
       isbn: livre.isbn,
       code: livre.code,
       emplacement: livre.emplacement,
-      theme: livre.theme,
-      auteur: livre.auteur,
     });
   }
 
@@ -115,8 +97,6 @@ export class LivreUpdateComponent implements OnInit {
       isbn: this.editForm.get(['isbn'])!.value,
       code: this.editForm.get(['code'])!.value,
       emplacement: this.editForm.get(['emplacement'])!.value,
-      theme: this.editForm.get(['theme'])!.value,
-      auteur: this.editForm.get(['auteur'])!.value,
     };
   }
 
@@ -136,7 +116,7 @@ export class LivreUpdateComponent implements OnInit {
     this.isSaving = false;
   }
 
-  trackById(index: number, item: SelectableEntity): any {
+  trackById(index: number, item: IEmplacement): any {
     return item.id;
   }
 }

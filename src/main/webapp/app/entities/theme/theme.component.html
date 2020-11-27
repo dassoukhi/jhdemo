@@ -24,6 +24,7 @@
                 <tr>
                     <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
                     <th scope="col" ><span jhiTranslate="jhdemoApp.theme.theme">Theme</span></th>
+                    <th scope="col" ><span jhiTranslate="jhdemoApp.theme.livre">Livre</span></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -31,6 +32,11 @@
                 <tr *ngFor="let theme of themes ;trackBy: trackId">
                     <td><a [routerLink]="['/theme', theme.id, 'view']">{{ theme.id }}</a></td>
                     <td>{{ theme.theme }}</td>
+                    <td>
+                        <span *ngFor="let livre of theme.livres; let last = last">
+                            <a class="form-control-static" [routerLink]="['/livre', livre?.id, 'view']">{{ livre.titre }}</a>{{ last ? '' : ', ' }}
+                        </span>
+                    </td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"

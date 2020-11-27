@@ -18,11 +18,9 @@
                         <a [routerLink]="['/exemplaire', emprunt.exemplaire?.id, 'view']">{{ emprunt.exemplaire?.id }}</a>
                     </div>
                 </dd>
-                <dt><span jhiTranslate="jhdemoApp.emprunt.utilisateur">Utilisateur</span></dt>
+                <dt><span jhiTranslate="jhdemoApp.emprunt.user">User</span></dt>
                 <dd>
-                    <div *ngIf="emprunt.utilisateur">
-                        <a [routerLink]="['/utilisateur', emprunt.utilisateur?.id, 'view']">{{ emprunt.utilisateur?.id }}</a>
-                    </div>
+                    {{ emprunt.user?.login }}
                 </dd>
             </dl>
 

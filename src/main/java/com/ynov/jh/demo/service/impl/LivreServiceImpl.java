@@ -53,4 +53,23 @@ public class LivreServiceImpl implements LivreService {
         log.debug("Request to delete Livre : {}", id);
         livreRepository.deleteById(id);
     }
+
+
+	@Override
+	public Optional<Livre> findByTitre(String titre) {
+		log.debug("Request to get all Livres by titre");
+		return livreRepository.findByTitre(titre);
+	}
+
+	@Override
+	public List<Livre> findAllByTheme(String theme) {
+		// TODO Auto-generated method stub
+		return livreRepository.findAllByTheme(theme);
+	}
+
+	@Override
+	public List<Livre> findAllByAuteur(String auteur) {
+		// TODO Auto-generated method stub
+		return livreRepository.findAllByAuteur(auteur);
+	}
 }

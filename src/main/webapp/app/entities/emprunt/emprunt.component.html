@@ -25,7 +25,7 @@
                     <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
                     <th scope="col" ><span jhiTranslate="jhdemoApp.emprunt.dateEmprunt">Date Emprunt</span></th>
                     <th scope="col" ><span jhiTranslate="jhdemoApp.emprunt.exemplaire">Exemplaire</span></th>
-                    <th scope="col" ><span jhiTranslate="jhdemoApp.emprunt.utilisateur">Utilisateur</span></th>
+                    <th scope="col" ><span jhiTranslate="jhdemoApp.emprunt.user">User</span></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -39,9 +39,7 @@
                         </div>
                     </td>
                     <td>
-                        <div *ngIf="emprunt.utilisateur">
-                            <a [routerLink]="['/utilisateur', emprunt.utilisateur?.id, 'view']" >{{ emprunt.utilisateur?.id }}</a>
-                        </div>
+                        {{ emprunt.user?.login }}
                     </td>
                     <td class="text-right">
                         <div class="btn-group">

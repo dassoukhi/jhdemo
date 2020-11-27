@@ -24,6 +24,17 @@
 
     <changeSet id="20201112112005-1-relations" author="jhipster">
 
+        <createTable tableName="auteur_livre">
+            <column name="livre_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="auteur_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="auteur_id, livre_id" tableName="auteur_livre"/>
+        
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
 

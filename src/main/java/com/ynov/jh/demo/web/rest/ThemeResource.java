@@ -1,5 +1,6 @@
 package com.ynov.jh.demo.web.rest;
 
+import com.ynov.jh.demo.domain.Livre;
 import com.ynov.jh.demo.domain.Theme;
 import com.ynov.jh.demo.repository.ThemeRepository;
 import com.ynov.jh.demo.web.rest.errors.BadRequestAlertException;
@@ -83,13 +84,21 @@ public class ThemeResource {
     /**
      * {@code GET  /themes} : get all the themes.
      *
+     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of themes in body.
      */
     @GetMapping("/themes")
-    public List<Theme> getAllThemes() {
+    public List<Theme> getAllThemes(@RequestParam(required = false, defaultValue = "false") boolean eagerload) {
         log.debug("REST request to get all Themes");
-        return themeRepository.findAll();
+        return themeRepository.findAllWithEagerRelationships();
     }
+    
+//    @GetMapping("/livre_by_theme")
+//    public List<Livre> getAllTLivreByTheme(@RequestParam(required = false, defaultValue = "") String theme) {
+//        log.debug("REST request to get all Livre By Theme");
+//        return themeRepository.findLivresByTheme(theme);
+//    }
+
 
     /**
      * {@code GET  /themes/:id} : get the "id" theme.
@@ -100,7 +109,7 @@ public class ThemeResource {
     @GetMapping("/themes/{id}")
     public ResponseEntity<Theme> getTheme(@PathVariable Long id) {
         log.debug("REST request to get Theme : {}", id);
-        Optional<Theme> theme = themeRepository.findById(id);
+        Optional<Theme> theme = themeRepository.findOneWithEagerRelationships(id);
         return ResponseUtil.wrapOrNotFound(theme);
     }
 
