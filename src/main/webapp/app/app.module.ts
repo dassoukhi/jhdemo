@@ -15,6 +15,7 @@ import { PageRibbonComponent } from './layouts/profiles/page-ribbon.component';
 import { ActiveMenuDirective } from './layouts/navbar/active-menu.directive';
 import { ErrorComponent } from './layouts/error/error.component';
 import { LivreSearchAutorComponent } from './livre-search-autor/livre-search-autor.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -25,6 +26,7 @@ import { LivreSearchAutorComponent } from './livre-search-autor/livre-search-aut
     // jhipster-needle-angular-add-module JHipster will add new module here
     JhdemoEntityModule,
     JhdemoAppRoutingModule,
+    FormsModule,
   ],
   declarations: [
     MainComponent,

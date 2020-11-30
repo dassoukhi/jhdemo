@@ -1,29 +1,65 @@
-<div>
-    <div id="Content" class="row">
-        <div id="ContentLeft" class="col">
-            <div id="ContentLeftList">
-                <label for="list-select" jhiTranslate="jhdemoApp.livre.sthem.them">Thème : </label>
-                <select name="list" id="list-select">
-                    <option value="">--Please choose an option--</option>
-                    <option value="t1">them1</option>
-                    <option value="t2">them2</option>
-                    <option value="t3">them3</option>
-                </select>
-            </div>
-            <div id="ContentLeftButton">
-                <button type="button" class="btn btn-outline-secondary" jhiTranslate="jhdemoApp.livre.sthem.delete">Effacer toutes les selctions</button>
-                <button type="button" class="btn btn-outline-secondary" jhiTranslate="jhdemoApp.livre.sthem.back">retour</button>
-            </div>
+<div class="row">
+    <div id="Content" class="col-md-3">
+        <div>
+            <input type="text" [(ngModel)]="titre" class="form-control" id="searchbar" placeholder="enter title, autor, or theme">
         </div>
 
-        <div id="ContentRight"  class="col">
-            <div id="ContentRightAff" class="ContentRightAff">
-                <h2>Livre1</h2>
-                <h2>Livre2</h2>
-                <h2>Livre3</h2>
-                <h2>Livre4</h2>
-                <h2>Livre5</h2>
-            </div>
+        <div class="divbutton">
+            <br/>
+            <button type="button" [routerLink]="['/biblio/searchbyautor']" class="btn btn-outline-secondary">search by autor</button>
+            <br/>
+            <button type="button" [routerLink]="['/biblio/searchbythem']" class="btn btn-outline-secondary" (click)="loadAllParTheme()">search by theme</button>
+            <br/>
+            <button type="button" [routerLink]="['/biblio/searchbytitre']" class="btn btn-outline-secondary">search by title</button>
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+    <div id="Content" class="col-md-7">
+        <div *ngIf="livres" class="ContentRightAff table-responsive">
+            <table class="table table-striped" aria-describedby="page-heading">
+                <thead>
+                    <tr>
+                        <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+                        <th scope="col" ><span jhiTranslate="jhdemoApp.livre.titre">Titre</span></th>
+                        <th scope="col" ><span jhiTranslate="jhdemoApp.livre.description">Description</span></th>
+                        <th scope="col" ><span jhiTranslate="jhdemoApp.livre.isbn">Isbn</span></th>
+                        <th scope="col" ><span jhiTranslate="jhdemoApp.livre.code">Code</span></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let livre of livres ;trackBy: trackId">
+                        <td><a [routerLink]="['/livre', livre.id, 'view']">{{ livre.id }}</a></td>
+                        <td>{{ livre.titre }}</td>
+                        <td>{{ livre.description }}</td>
+                        <td>{{ livre.isbn }}</td>
+                        <td>{{ livre.code }}</td>
+                        <td class="text-right">
+                            <div class="btn-group">
+                                <button type="submit"
+                                        [routerLink]="['/livre', livre.id, 'view']"
+                                        class="btn btn-info btn-sm">
+                                    <fa-icon icon="eye"></fa-icon>
+                                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                                </button>
+    
+                                <button type="submit"
+                                        [routerLink]="['/livre', livre.id, 'edit']"
+                                        class="btn btn-primary btn-sm">
+                                    <fa-icon icon="pencil-alt"></fa-icon>
+                                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                                </button>
+    
+                                <button type="submit"
+                                        class="btn btn-danger btn-sm">
+                                    <fa-icon icon="times"></fa-icon>
+                                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

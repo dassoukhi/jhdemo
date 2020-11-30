@@ -7,9 +7,10 @@ import { LivresearchautorComponent } from './livre-search-autor/livresearchautor
 import { LivreSearchThemComponent } from './livre-search-them/livresearchthem.component';
 import { LivreSearchTitreComponent } from './livre-search-titre/livresearchtitre.component';
 import { BiblioComponent } from '../biblio/biblio.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  imports: [JhdemoSharedModule, RouterModule.forChild(biblioRoutes)],
+  imports: [JhdemoSharedModule, FormsModule, RouterModule.forChild(biblioRoutes)],
   declarations: [LivresearchautorComponent, LivreSearchThemComponent, LivreSearchTitreComponent, BiblioComponent],
 })
 export class JhdemoBiblioModule {}
