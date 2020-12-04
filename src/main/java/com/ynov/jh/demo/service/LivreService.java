@@ -25,6 +25,23 @@ public interface LivreService {
      */
     List<Livre> findAll();
 
+    
+   
+    /**
+     * Get all the livres by Titre.
+     *
+     * @return the list of entities.
+     */
+	
+    Optional<Livre> findByTitre(String titre);
+    
+    
+    List<Livre> findAllByTheme(String theme);
+    
+    
+    
+    List<Livre> findAllByAuteur(String auteur);
+
 
     /**
      * Get the "id" livre.

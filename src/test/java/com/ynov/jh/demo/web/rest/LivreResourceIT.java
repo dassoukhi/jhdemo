@@ -3,7 +3,6 @@ package com.ynov.jh.demo.web.rest;
 import com.ynov.jh.demo.JhdemoApp;
 import com.ynov.jh.demo.domain.Livre;
 import com.ynov.jh.demo.repository.LivreRepository;
-import com.ynov.jh.demo.service.LivreService;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -44,9 +43,6 @@ public class LivreResourceIT {
 
     @Autowired
     private LivreRepository livreRepository;
-
-    @Autowired
-    private LivreService livreService;
 
     @Autowired
     private EntityManager em;
@@ -132,6 +128,82 @@ public class LivreResourceIT {
 
     @Test
     @Transactional
+    public void checkTitreIsRequired() throws Exception {
+        int databaseSizeBeforeTest = livreRepository.findAll().size();
+        // set the field null
+        livre.setTitre(null);
+
+        // Create the Livre, which fails.
+
+
+        restLivreMockMvc.perform(post("/api/livres")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(livre)))
+            .andExpect(status().isBadRequest());
+
+        List<Livre> livreList = livreRepository.findAll();
+        assertThat(livreList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkDescriptionIsRequired() throws Exception {
+        int databaseSizeBeforeTest = livreRepository.findAll().size();
+        // set the field null
+        livre.setDescription(null);
+
+        // Create the Livre, which fails.
+
+
+        restLivreMockMvc.perform(post("/api/livres")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(livre)))
+            .andExpect(status().isBadRequest());
+
+        List<Livre> livreList = livreRepository.findAll();
+        assertThat(livreList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkIsbnIsRequired() throws Exception {
+        int databaseSizeBeforeTest = livreRepository.findAll().size();
+        // set the field null
+        livre.setIsbn(null);
+
+        // Create the Livre, which fails.
+
+
+        restLivreMockMvc.perform(post("/api/livres")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(livre)))
+            .andExpect(status().isBadRequest());
+
+        List<Livre> livreList = livreRepository.findAll();
+        assertThat(livreList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkCodeIsRequired() throws Exception {
+        int databaseSizeBeforeTest = livreRepository.findAll().size();
+        // set the field null
+        livre.setCode(null);
+
+        // Create the Livre, which fails.
+
+
+        restLivreMockMvc.perform(post("/api/livres")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(livre)))
+            .andExpect(status().isBadRequest());
+
+        List<Livre> livreList = livreRepository.findAll();
+        assertThat(livreList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllLivres() throws Exception {
         // Initialize the database
         livreRepository.saveAndFlush(livre);
@@ -175,7 +247,7 @@ public class LivreResourceIT {
     @Transactional
     public void updateLivre() throws Exception {
         // Initialize the database
-        livreService.save(livre);
+        livreRepository.saveAndFlush(livre);
 
         int databaseSizeBeforeUpdate = livreRepository.findAll().size();
 
@@ -224,7 +296,7 @@ public class LivreResourceIT {
     @Transactional
     public void deleteLivre() throws Exception {
         // Initialize the database
-        livreService.save(livre);
+        livreRepository.saveAndFlush(livre);
 
         int databaseSizeBeforeDelete = livreRepository.findAll().size();
 

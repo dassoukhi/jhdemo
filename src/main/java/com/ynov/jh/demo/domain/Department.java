@@ -1,6 +1,5 @@
 package com.ynov.jh.demo.domain;
 
-import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -34,10 +33,6 @@ public class Department implements Serializable {
     @JoinColumn(unique = true)
     private Location location;
 
-    /**
-     * A relationship
-     */
-    @ApiModelProperty(value = "A relationship")
     @OneToMany(mappedBy = "department")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     private Set<Employee> employees = new HashSet<>();

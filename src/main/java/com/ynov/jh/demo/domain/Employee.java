@@ -62,10 +62,6 @@ public class Employee implements Serializable {
     @JsonIgnoreProperties(value = "employees", allowSetters = true)
     private Employee manager;
 
-    /**
-     * Another side of the same relationship
-     */
-    @ApiModelProperty(value = "Another side of the same relationship")
     @ManyToOne
     @JsonIgnoreProperties(value = "employees", allowSetters = true)
     private Department department;

@@ -24,6 +24,12 @@
                 <dd>
                     <span>{{ livre.code }}</span>
                 </dd>
+                <dt><span jhiTranslate="jhdemoApp.livre.emplacement">Emplacement</span></dt>
+                <dd>
+                    <div *ngIf="livre.emplacement">
+                        <a [routerLink]="['/emplacement', livre.emplacement?.id, 'view']">{{ livre.emplacement?.id }}</a>
+                    </div>
+                </dd>
             </dl>
 
             <button type="submit"

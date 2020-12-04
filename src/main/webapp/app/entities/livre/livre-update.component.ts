@@ -4,9 +4,12 @@ import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { ILivre, Livre } from 'app/shared/model/livre.model';
 import { LivreService } from './livre.service';
+import { IEmplacement } from 'app/shared/model/emplacement.model';
+import { EmplacementService } from 'app/entities/emplacement/emplacement.service';
 
 @Component({
   selector: 'jhi-livre-update',
@@ -14,20 +17,49 @@ import { LivreService } from './livre.service';
 })
 export class LivreUpdateComponent implements OnInit {
   isSaving = false;
+  emplacements: IEmplacement[] = [];
 
   editForm = this.fb.group({
     id: [],
-    titre: [],
-    description: [],
-    isbn: [],
-    code: [],
+    titre: [null, [Validators.required]],
+    description: [null, [Validators.required]],
+    isbn: [null, [Validators.required]],
+    code: [null, [Validators.required]],
+    emplacement: [],
   });
 
-  constructor(protected livreService: LivreService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
+  constructor(
+    protected livreService: LivreService,
+    protected emplacementService: EmplacementService,
+    protected activatedRoute: ActivatedRoute,
+    private fb: FormBuilder
+  ) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ livre }) => {
       this.updateForm(livre);
+
+      this.emplacementService
+        .query({ filter: 'livre-is-null' })
+        .pipe(
+          map((res: HttpResponse<IEmplacement[]>) => {
+            return res.body || [];
+          })
+        )
+        .subscribe((resBody: IEmplacement[]) => {
+          if (!livre.emplacement || !livre.emplacement.id) {
+            this.emplacements = resBody;
+          } else {
+            this.emplacementService
+              .find(livre.emplacement.id)
+              .pipe(
+                map((subRes: HttpResponse<IEmplacement>) => {
+                  return subRes.body ? [subRes.body].concat(resBody) : resBody;
+                })
+              )
+              .subscribe((concatRes: IEmplacement[]) => (this.emplacements = concatRes));
+          }
+        });
     });
   }
 
@@ -38,6 +70,7 @@ export class LivreUpdateComponent implements OnInit {
       description: livre.description,
       isbn: livre.isbn,
       code: livre.code,
+      emplacement: livre.emplacement,
     });
   }
 
@@ -63,6 +96,7 @@ export class LivreUpdateComponent implements OnInit {
       description: this.editForm.get(['description'])!.value,
       isbn: this.editForm.get(['isbn'])!.value,
       code: this.editForm.get(['code'])!.value,
+      emplacement: this.editForm.get(['emplacement'])!.value,
     };
   }
 
@@ -80,5 +114,9 @@ export class LivreUpdateComponent implements OnInit {
 
   protected onSaveError(): void {
     this.isSaving = false;
+  }
+
+  trackById(index: number, item: IEmplacement): any {
+    return item.id;
   }
 }

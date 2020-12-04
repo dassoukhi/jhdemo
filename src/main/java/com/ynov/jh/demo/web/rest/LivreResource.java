@@ -1,7 +1,7 @@
 package com.ynov.jh.demo.web.rest;
 
 import com.ynov.jh.demo.domain.Livre;
-import com.ynov.jh.demo.service.LivreService;
+import com.ynov.jh.demo.repository.LivreRepository;
 import com.ynov.jh.demo.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
@@ -10,8 +10,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -22,6 +24,7 @@ import java.util.Optional;
  */
 @RestController
 @RequestMapping("/api")
+@Transactional
 public class LivreResource {
 
     private final Logger log = LoggerFactory.getLogger(LivreResource.class);
@@ -31,10 +34,10 @@ public class LivreResource {
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
 
-    private final LivreService livreService;
+    private final LivreRepository livreRepository;
 
-    public LivreResource(LivreService livreService) {
-        this.livreService = livreService;
+    public LivreResource(LivreRepository livreRepository) {
+        this.livreRepository = livreRepository;
     }
 
     /**
@@ -45,12 +48,12 @@ public class LivreResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/livres")
-    public ResponseEntity<Livre> createLivre(@RequestBody Livre livre) throws URISyntaxException {
+    public ResponseEntity<Livre> createLivre(@Valid @RequestBody Livre livre) throws URISyntaxException {
         log.debug("REST request to save Livre : {}", livre);
         if (livre.getId() != null) {
             throw new BadRequestAlertException("A new livre cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        Livre result = livreService.save(livre);
+        Livre result = livreRepository.save(livre);
         return ResponseEntity.created(new URI("/api/livres/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -66,12 +69,12 @@ public class LivreResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/livres")
-    public ResponseEntity<Livre> updateLivre(@RequestBody Livre livre) throws URISyntaxException {
+    public ResponseEntity<Livre> updateLivre(@Valid @RequestBody Livre livre) throws URISyntaxException {
         log.debug("REST request to update Livre : {}", livre);
         if (livre.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
-        Livre result = livreService.save(livre);
+        Livre result = livreRepository.save(livre);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, livre.getId().toString()))
             .body(result);
@@ -85,7 +88,21 @@ public class LivreResource {
     @GetMapping("/livres")
     public List<Livre> getAllLivres() {
         log.debug("REST request to get all Livres");
-        return livreService.findAll();
+        return livreRepository.findAll();
+    }
+ 
+    
+    @GetMapping("/livre_byTheme")
+    public List<Livre> getAllTLivreByTheme(@RequestParam(required = false, defaultValue = "") String theme) {
+        log.debug("REST request to get all Livres by theme");
+        return livreRepository.findAllByTheme(theme);
+    }
+    
+    
+    @GetMapping("/livre_by_auteur")
+    public List<Livre> getAllTLivreByAuteur(@RequestParam(required = false, defaultValue = "") String auteur) {
+        log.debug("REST request to get all Livres by auteur");
+        return livreRepository.findAllByAuteur(auteur);
     }
 
     /**
@@ -97,7 +114,14 @@ public class LivreResource {
     @GetMapping("/livres/{id}")
     public ResponseEntity<Livre> getLivre(@PathVariable Long id) {
         log.debug("REST request to get Livre : {}", id);
-        Optional<Livre> livre = livreService.findOne(id);
+        Optional<Livre> livre = livreRepository.findById(id);
+        return ResponseUtil.wrapOrNotFound(livre);
+    }
+    
+    @GetMapping("/livres_by_titre/{titre}")
+    public ResponseEntity<Livre> getLivreByTitre(@PathVariable String titre) {
+        log.debug("REST request to get Livre : {}", titre);
+        Optional<Livre> livre = livreRepository.findByTitre(titre);
         return ResponseUtil.wrapOrNotFound(livre);
     }
 
@@ -110,7 +134,7 @@ public class LivreResource {
     @DeleteMapping("/livres/{id}")
     public ResponseEntity<Void> deleteLivre(@PathVariable Long id) {
         log.debug("REST request to delete Livre : {}", id);
-        livreService.delete(id);
+        livreRepository.deleteById(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }
 }
