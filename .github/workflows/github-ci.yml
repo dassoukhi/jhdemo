@@ -1,0 +1,131 @@
+nom: Application CI
+sur: [push, pull_request]
+emplois:
+    pipeline:
+        nom: pipeline jhdemo
+        run-on: ubuntu-20.04
+        if: "! contient (github.event.head_commit.message, '[ci skip]') &&! contient (github.event.head_commit.message, '[skip ci]') &&! contient (github.event.pull_request. title, '[skip ci]') &&! contains (github.event.pull_request.title, '[ci skip]') "
+        timeout-minutes: 40
+        env:
+            NODE_VERSION: 12.16.1
+            SPRING_OUTPUT_ANSI_ENABLED: DETECT
+            SPRING_JPA_SHOW_SQL: faux
+            JHI_DISABLE_WEBPACK_LOGS: vrai
+            NG_CLI_ANALYTICS: faux
+        pas:
+            - utilise: actions / checkout @ v2
+            - utilise: actions / setup-node @ v1
+              avec:
+                  version du nœud: 12.16.1
+            - utilise: actions / setup-java @ v1
+              avec:
+                  version java: 11
+            - nom: installe les packages node.js
+              exécuter: |
+                java -version
+                npm installer
+            - nom: exécuter le test du backend
+              exécuter: |
+                  java -version
+                  #chmod + x mvnw
+                  mvn -ntp nettoyer vérifier -P-webpack
+              env:
+                NODE_VERSION: 12.16.1
+            - nom: Exécuter le test du frontend
+              exécuter: |
+                  java -version
+                  test d'exécution npm
+            - utilise: actions / setup-java @ v1
+              avec:
+                 version java: 11
+            - nom: analyse du code avec SonarQube
+              continue sur erreur: vrai
+              env:
+                  GITHUB_TOKEN: $ {{secrets.GITHUB_TOKEN}}
+                  SONAR_TOKEN: $ {{secrets.SONAR_TOKEN}}
+              exécuter: |
+                  java -version
+                  si [-n $ SONAR_TOKEN]; puis
+                      mvn -ntp initialise le sondeur: sonar -Dsonar.organization = $ {{secrets.SONAR_ORGANISATION_KEY}} -Dsonar.host.url = $ {{secrets.SONAR_URL}}
+                  autre
+                      echo Non SONAR_TOKEN, saut ...
+                  Fi
+            - nom: application de package
+              exécuter: |
+                  java -version
+                  echo "------------------- PREVIOUS SETTINGS.xml ------------------------- ----- "
+                  chat ~ / .m2 / settings.xml
+                  echo "------------------- PREVIOUS SETTINGS.xml ------------------------- ----- "
+                  mv src / main / settings / settings.myartifactory.xml ~ / .m2 / settings.xml
+                  echo "------------------- NOUVEAUX PARAMETRES.xml ------------------------- ----- "
+                  chat ~ / .m2 / settings.xml
+                  echo "------------------- NOUVEAUX PARAMETRES.xml ------------------------- ----- "
+                  mvn -ntp package deploy -Pprod -DskipTests
+            
+            # - nom: Déployer sur Heroku
+            # if: github.event_name == 'push' && github.ref == 'refs / heads / master'
+            # env:
+            # HEROKU_API_KEY: $ {{secrets.HEROKU_API_KEY}}
+            # run: mvn -ntp com.heroku.sdk: heroku-maven-plugin: 2.0.5: deploy -DskipTests -Pprod -Dheroku.buildpacks = $ {{secrets.HEROKU_BUILD_PACK}} -Dheroku.appName = $ {{secrets. HEROKU_APP_NAME_TEST}}
+            
+            - nom: Construire et publier l'image du menu fixe
+              if: github.event_name == 'push' && (github.ref == 'refs / heads / master' || startsWith (github.ref, 'refs / tags /'))
+              exécuter: |
+                  GIT_TAG =: $ {GITHUB_REF # refs / tags /}
+                  DOCKER_TAG = $ {GIT_TAG #: refs / heads / master}
+                  mvn -ntp jib: build -Djib.to.image = $ {{secrets.DOCKER_IMAGE_PREFIX}} $ {DOCKER_TAG} -Djib.to.auth.username = "$ {{secrets.DOCKER_USERNAME}}" -Djib.to.auth .password = "$ {{secrets.DOCKER_PASSWORD}}"
+  
+  
+    JobDeploy2DockerHub:
+        run-on: ubuntu-20.04
+        nom: Jobe Deploy dans docker hub
+        pas:
+            - nom: installer
+              exécuter: |
+                  mise à jour sudo apt
+                  sudo apt installer maven
+            - utilise: actions / checkout @ v2
+            - nom: package mvn
+              exécuter: mvn -ntp package -Pprod -DskipTests
+            - nom: Construire et publier l'image du menu fixe
+              if: github.event_name == 'push' && (github.ref == 'refs / heads / master' || startsWith (github.ref, 'refs / tags /'))
+              exécuter: |
+                  GIT_TAG =: $ {GITHUB_REF # refs / tags /}
+                  DOCKER_TAG = $ {GIT_TAG #: refs / heads / master}
+                  mvn -ntp jib: build -Djib.to.image = $ {{secrets.DOCKER_IMAGE_PREFIX}} $ {DOCKER_TAG} -Djib.to.auth.username = "$ {{secrets.DOCKER_USERNAME}}" -Djib.to.auth .password = "$ {{secrets.DOCKER_PASSWORD}}"
+  
+  
+    #https: //github.com/marketplace/actions/mvn-cmd
+    #https: //github.com/marketplace/actions/action-maven-deploy
+    jobPublier:      
+      name: paramètre de génération de travaux pour mv deploy
+      #needs: pipeline
+      run-on: ubuntu-20.04
+      pas:
+        - nom: Générer les paramètres	
+          utilise: qcastel / github-actions-maven / actions / maven @ master
+          avec:
+            maven-local-repo-path: $ {{secrets.JFROG_OSS_REPO_SNAPSHOTS}}
+            maven-repo-server-id: instantanés
+            maven-repo-server-username: $ {{secrets.JFROG_OSS_REPO_USER}}
+            maven-repo-server-password: $ {{secrets.JFROG_OSS_REPO_PASS}}
+            # maven-args: "./mvnw -ntp package deploy -Pprod -DskipTests"
+        - nom: Publier l'artefact
+          exécuter: |
+            chat ~ / .m2 / settings.xml
+            mvn -ntp package deploy -Pprod -DskipTests
+    
+    #https: //github.com/marketplace/actions/deploy-to-heroku  
+    jobdeploy:
+      nom: Déployer sur Herroku
+      besoins: pipeline
+      run-on: ubuntu-20.04
+      pas:
+        - utilise: actions / checkout @ v2
+        - utilise: akhileshns/heroku-deploy@v3.6.8 # C'est l'action
+          avec:
+            heroku_api_key: $ {{secrets.HEROKU_API_KEY}}
+            heroku_app_name: $ {{secrets.HEROKU_APP_NAME}} #Doit être unique dans Heroku
+            heroku_email: $ {{secrets.HEROKU_EMAIL}}
+            branche: "maître"
+            buildpack: $ {{secrets.HEROKU_BUILD_PACK}}
