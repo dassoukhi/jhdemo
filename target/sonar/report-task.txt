@@ -1,6 +1,0 @@
-projectKey=jhdemo
-serverUrl=http://localhost:9001
-serverVersion=8.3.1.34397
-dashboardUrl=http://localhost:9001/dashboard?id=jhdemo
-ceTaskId=AXYpd5Oo_PgNm5Qr3C7I
-ceTaskUrl=http://localhost:9001/api/ce/task?id=AXYpd5Oo_PgNm5Qr3C7I
