@@ -1,0 +1,51 @@
+c3535b14f3d42e6952c4ebbb928a91ff
+/* istanbul ignore next */
+function cov_7pvl3tmai() {
+  var path = "C:\\Users\\Dass\\Desktop\\Master1_YNOV\\DevLogiciel\\jhdemo\\src\\main\\webapp\\app\\entities\\emprunt\\emprunt-detail.component.html";
+  var hash = "44781a5470b5c2684645f30818c5731e7ebffb89";
+  var global = new Function("return this")();
+  var gcv = "__coverage__";
+  var coverageData = {
+    path: "C:\\Users\\Dass\\Desktop\\Master1_YNOV\\DevLogiciel\\jhdemo\\src\\main\\webapp\\app\\entities\\emprunt\\emprunt-detail.component.html",
+    statementMap: {
+      "0": {
+        start: {
+          line: 1,
+          column: 0
+        },
+        end: {
+          line: 1,
+          column: 1710
+        }
+      }
+    },
+    fnMap: {},
+    branchMap: {},
+    s: {
+      "0": 0
+    },
+    f: {},
+    b: {},
+    inputSourceMap: null,
+    _coverageSchema: "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    hash: "44781a5470b5c2684645f30818c5731e7ebffb89"
+  };
+  var coverage = global[gcv] || (global[gcv] = {});
+
+  if (!coverage[path] || coverage[path].hash !== hash) {
+    coverage[path] = coverageData;
+  }
+
+  var actualCoverage = coverage[path];
+  {
+    // @ts-ignore
+    cov_7pvl3tmai = function () {
+      return actualCoverage;
+    };
+  }
+  return actualCoverage;
+}
+
+cov_7pvl3tmai();
+cov_7pvl3tmai().s[0]++;
+module.exports = "<div class=\"row justify-content-center\">\n    <div class=\"col-8\">\n        <div *ngIf=\"emprunt\">\n            <h2><span jhiTranslate=\"jhdemoApp.emprunt.detail.title\">Emprunt</span> {{ emprunt.id }}</h2>\n\n            <hr>\n\n            <jhi-alert-error></jhi-alert-error>\n\n            <dl class=\"row-md jh-entity-details\">\n                <dt><span jhiTranslate=\"jhdemoApp.emprunt.dateEmprunt\">Date Emprunt</span></dt>\n                <dd>\n                    <span>{{ emprunt.dateEmprunt }}</span>\n                </dd>\n                <dt><span jhiTranslate=\"jhdemoApp.emprunt.exemplaire\">Exemplaire</span></dt>\n                <dd>\n                    <div *ngIf=\"emprunt.exemplaire\">\n                        <a [routerLink]=\"['/exemplaire', emprunt.exemplaire?.id, 'view']\">{{ emprunt.exemplaire?.id }}</a>\n                    </div>\n                </dd>\n                <dt><span jhiTranslate=\"jhdemoApp.emprunt.user\">User</span></dt>\n                <dd>\n                    {{ emprunt.user?.login }}\n                </dd>\n            </dl>\n\n            <button type=\"submit\"\n                    (click)=\"previousState()\"\n                    class=\"btn btn-info\">\n                <fa-icon icon=\"arrow-left\"></fa-icon>&nbsp;<span jhiTranslate=\"entity.action.back\">Back</span>\n            </button>\n\n            <button type=\"button\"\n                    [routerLink]=\"['/emprunt', emprunt.id, 'edit']\"\n                    class=\"btn btn-primary\">\n                <fa-icon icon=\"pencil-alt\"></fa-icon>&nbsp;<span jhiTranslate=\"entity.action.edit\">Edit</span>\n            </button>\n        </div>\n    </div>\n</div>\n";

@@ -1,0 +1,51 @@
+7508e00da7ff6f3e311c7f1f6efacd5b
+/* istanbul ignore next */
+function cov_14vzzi4gl5() {
+  var path = "C:\\Users\\Dass\\Desktop\\Master1_YNOV\\DevLogiciel\\jhdemo\\src\\main\\webapp\\app\\entities\\theme\\theme-update.component.html";
+  var hash = "162c5c9cd747379647341eabda4284540573ca3c";
+  var global = new Function("return this")();
+  var gcv = "__coverage__";
+  var coverageData = {
+    path: "C:\\Users\\Dass\\Desktop\\Master1_YNOV\\DevLogiciel\\jhdemo\\src\\main\\webapp\\app\\entities\\theme\\theme-update.component.html",
+    statementMap: {
+      "0": {
+        start: {
+          line: 1,
+          column: 0
+        },
+        end: {
+          line: 1,
+          column: 2990
+        }
+      }
+    },
+    fnMap: {},
+    branchMap: {},
+    s: {
+      "0": 0
+    },
+    f: {},
+    b: {},
+    inputSourceMap: null,
+    _coverageSchema: "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    hash: "162c5c9cd747379647341eabda4284540573ca3c"
+  };
+  var coverage = global[gcv] || (global[gcv] = {});
+
+  if (!coverage[path] || coverage[path].hash !== hash) {
+    coverage[path] = coverageData;
+  }
+
+  var actualCoverage = coverage[path];
+  {
+    // @ts-ignore
+    cov_14vzzi4gl5 = function () {
+      return actualCoverage;
+    };
+  }
+  return actualCoverage;
+}
+
+cov_14vzzi4gl5();
+cov_14vzzi4gl5().s[0]++;
+module.exports = "<div class=\"row justify-content-center\">\n    <div class=\"col-8\">\n        <form name=\"editForm\" role=\"form\" novalidate (ngSubmit)=\"save()\" [formGroup]=\"editForm\">\n            <h2 id=\"jhi-theme-heading\" jhiTranslate=\"jhdemoApp.theme.home.createOrEditLabel\">Create or edit a Theme</h2>\n\n            <div>\n                <jhi-alert-error></jhi-alert-error>\n\n                <div class=\"form-group\" [hidden]=\"!editForm.get('id')!.value\">\n                    <label for=\"id\" jhiTranslate=\"global.field.id\">ID</label>\n                    <input type=\"text\" class=\"form-control\" id=\"id\" name=\"id\" formControlName=\"id\" readonly />\n                </div>\n\n                <div class=\"form-group\">\n                    <label class=\"form-control-label\" jhiTranslate=\"jhdemoApp.theme.theme\" for=\"field_theme\">Theme</label>\n                    <input type=\"text\" class=\"form-control\" name=\"theme\" id=\"field_theme\"\n                           formControlName=\"theme\"/>\n                    <div *ngIf=\"editForm.get('theme')!.invalid && (editForm.get('theme')!.dirty || editForm.get('theme')!.touched)\">\n                        <small class=\"form-text text-danger\"\n                               *ngIf=\"editForm.get('theme')?.errors?.required\" jhiTranslate=\"entity.validation.required\">\n                        This field is required.\n                        </small>\n                        <small class=\"form-text text-danger\"\n                               *ngIf=\"editForm.get('theme')?.errors?.maxlength\" jhiTranslate=\"entity.validation.maxlength\" [translateValues]=\"{ max: 45 }\">\n                        This field cannot be longer than 45 characters.\n                        </small>\n                    </div>\n                </div>\n\n                <div class=\"form-group\">\n                    <label jhiTranslate=\"jhdemoApp.theme.livre\" for=\"field_livres\">Livre</label>\n                    <select class=\"form-control\" id=\"field_livres\" multiple name=\"livres\" formControlName=\"livres\">\n                        <option [ngValue]=\"getSelected(editForm.get('livres')!.value, livreOption)\" *ngFor=\"let livreOption of livres; trackBy: trackById\">{{ livreOption.titre }}</option>\n                    </select>\n                </div>\n            </div>\n\n            <div>\n                <button type=\"button\" id=\"cancel-save\" class=\"btn btn-secondary\" (click)=\"previousState()\">\n                    <fa-icon icon=\"ban\"></fa-icon>&nbsp;<span jhiTranslate=\"entity.action.cancel\">Cancel</span>\n                </button>\n\n                <button type=\"submit\" id=\"save-entity\" [disabled]=\"editForm.invalid || isSaving\" class=\"btn btn-primary\">\n                    <fa-icon icon=\"save\"></fa-icon>&nbsp;<span jhiTranslate=\"entity.action.save\">Save</span>\n                </button>\n            </div>\n        </form>\n    </div>\n</div>\n";

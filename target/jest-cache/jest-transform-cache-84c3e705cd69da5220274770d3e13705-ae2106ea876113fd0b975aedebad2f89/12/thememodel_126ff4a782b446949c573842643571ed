@@ -1,0 +1,171 @@
+4325de42e919b8abcfc1bf7e0852035c
+"use strict";
+
+/* istanbul ignore next */
+function cov_2mzrsb4vpa() {
+  var path = "C:\\Users\\Dass\\Desktop\\Master1_YNOV\\DevLogiciel\\jhdemo\\src\\main\\webapp\\app\\shared\\model\\theme.model.ts";
+  var hash = "7b3365ac1bffc1d10c8f58bb2fc90badf659ae8d";
+  var global = new Function("return this")();
+  var gcv = "__coverage__";
+  var coverageData = {
+    path: "C:\\Users\\Dass\\Desktop\\Master1_YNOV\\DevLogiciel\\jhdemo\\src\\main\\webapp\\app\\shared\\model\\theme.model.ts",
+    statementMap: {
+      "0": {
+        start: {
+          line: 2,
+          column: 0
+        },
+        end: {
+          line: 2,
+          column: 62
+        }
+      },
+      "1": {
+        start: {
+          line: 3,
+          column: 0
+        },
+        end: {
+          line: 3,
+          column: 23
+        }
+      },
+      "2": {
+        start: {
+          line: 6,
+          column: 8
+        },
+        end: {
+          line: 6,
+          column: 21
+        }
+      },
+      "3": {
+        start: {
+          line: 7,
+          column: 8
+        },
+        end: {
+          line: 7,
+          column: 27
+        }
+      },
+      "4": {
+        start: {
+          line: 8,
+          column: 8
+        },
+        end: {
+          line: 8,
+          column: 29
+        }
+      },
+      "5": {
+        start: {
+          line: 11,
+          column: 0
+        },
+        end: {
+          line: 11,
+          column: 22
+        }
+      }
+    },
+    fnMap: {
+      "0": {
+        name: "(anonymous_0)",
+        decl: {
+          start: {
+            line: 5,
+            column: 4
+          },
+          end: {
+            line: 5,
+            column: 5
+          }
+        },
+        loc: {
+          start: {
+            line: 5,
+            column: 35
+          },
+          end: {
+            line: 9,
+            column: 5
+          }
+        },
+        line: 5
+      }
+    },
+    branchMap: {},
+    s: {
+      "0": 0,
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0
+    },
+    f: {
+      "0": 0
+    },
+    b: {},
+    inputSourceMap: {
+      file: "C:\\Users\\Dass\\Desktop\\Master1_YNOV\\DevLogiciel\\jhdemo\\src\\main\\webapp\\app\\shared\\model\\theme.model.ts",
+      mappings: ";;;AAQA,MAAa,KAAK;IAChB,YAAmB,EAAW,EAAS,KAAc,EAAS,MAAiB;QAA5D,OAAE,GAAF,EAAE,CAAS;QAAS,UAAK,GAAL,KAAK,CAAS;QAAS,WAAM,GAAN,MAAM,CAAW;IAAG,CAAC;CACpF;AAFD,sBAEC",
+      names: [],
+      sources: ["C:\\Users\\Dass\\Desktop\\Master1_YNOV\\DevLogiciel\\jhdemo\\src\\main\\webapp\\app\\shared\\model\\theme.model.ts"],
+      sourcesContent: ["import { ILivre } from 'app/shared/model/livre.model';\n\nexport interface ITheme {\n  id?: number;\n  theme?: string;\n  livres?: ILivre[];\n}\n\nexport class Theme implements ITheme {\n  constructor(public id?: number, public theme?: string, public livres?: ILivre[]) {}\n}\n"],
+      version: 3
+    },
+    _coverageSchema: "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    hash: "7b3365ac1bffc1d10c8f58bb2fc90badf659ae8d"
+  };
+  var coverage = global[gcv] || (global[gcv] = {});
+
+  if (!coverage[path] || coverage[path].hash !== hash) {
+    coverage[path] = coverageData;
+  }
+
+  var actualCoverage = coverage[path];
+  {
+    // @ts-ignore
+    cov_2mzrsb4vpa = function () {
+      return actualCoverage;
+    };
+  }
+  return actualCoverage;
+}
+
+cov_2mzrsb4vpa();
+cov_2mzrsb4vpa().s[0]++;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+/* istanbul ignore next */
+cov_2mzrsb4vpa().s[1]++;
+exports.Theme = void 0;
+
+class Theme {
+  constructor(id, theme, livres) {
+    /* istanbul ignore next */
+    cov_2mzrsb4vpa().f[0]++;
+    cov_2mzrsb4vpa().s[2]++;
+    this.id = id;
+
+    /* istanbul ignore next */
+    cov_2mzrsb4vpa().s[3]++;
+    this.theme = theme;
+
+    /* istanbul ignore next */
+    cov_2mzrsb4vpa().s[4]++;
+    this.livres = livres;
+  }
+
+}
+
+/* istanbul ignore next */
+cov_2mzrsb4vpa().s[5]++;
+exports.Theme = Theme;
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkM6XFxVc2Vyc1xcRGFzc1xcRGVza3RvcFxcTWFzdGVyMV9ZTk9WXFxEZXZMb2dpY2llbFxcamhkZW1vXFxzcmNcXG1haW5cXHdlYmFwcFxcYXBwXFxzaGFyZWRcXG1vZGVsXFx0aGVtZS5tb2RlbC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0FBUUEsTUFBYSxLQUFiLENBQWtCO0FBQ2hCLEVBQUEsV0FBQSxDQUFtQixFQUFuQixFQUF1QyxLQUF2QyxFQUE4RCxNQUE5RCxFQUErRTtBQUFBO0FBQUE7QUFBQTtBQUE1RCxTQUFBLEVBQUEsR0FBQSxFQUFBOztBQUE0RDtBQUFBO0FBQXhDLFNBQUEsS0FBQSxHQUFBLEtBQUE7O0FBQXdDO0FBQUE7QUFBakIsU0FBQSxNQUFBLEdBQUEsTUFBQTtBQUFxQjs7QUFEbkU7Ozs7QUFBbEIsT0FBQSxDQUFBLEtBQUEsR0FBQSxLQUFBIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgSUxpdnJlIH0gZnJvbSAnYXBwL3NoYXJlZC9tb2RlbC9saXZyZS5tb2RlbCc7XG5cbmV4cG9ydCBpbnRlcmZhY2UgSVRoZW1lIHtcbiAgaWQ/OiBudW1iZXI7XG4gIHRoZW1lPzogc3RyaW5nO1xuICBsaXZyZXM/OiBJTGl2cmVbXTtcbn1cblxuZXhwb3J0IGNsYXNzIFRoZW1lIGltcGxlbWVudHMgSVRoZW1lIHtcbiAgY29uc3RydWN0b3IocHVibGljIGlkPzogbnVtYmVyLCBwdWJsaWMgdGhlbWU/OiBzdHJpbmcsIHB1YmxpYyBsaXZyZXM/OiBJTGl2cmVbXSkge31cbn1cbiJdfQ==

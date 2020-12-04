@@ -1,0 +1,51 @@
+82f2753c0915ed12fac503b659b0ab35
+/* istanbul ignore next */
+function cov_1ccniyl078() {
+  var path = "C:\\Users\\Dass\\Desktop\\Master1_YNOV\\DevLogiciel\\jhdemo\\src\\main\\webapp\\app\\entities\\auteur\\auteur.component.html";
+  var hash = "4ba885b03160fc3c571286d5e8d3a6ba0beec07e";
+  var global = new Function("return this")();
+  var gcv = "__coverage__";
+  var coverageData = {
+    path: "C:\\Users\\Dass\\Desktop\\Master1_YNOV\\DevLogiciel\\jhdemo\\src\\main\\webapp\\app\\entities\\auteur\\auteur.component.html",
+    statementMap: {
+      "0": {
+        start: {
+          line: 1,
+          column: 0
+        },
+        end: {
+          line: 1,
+          column: 3413
+        }
+      }
+    },
+    fnMap: {},
+    branchMap: {},
+    s: {
+      "0": 0
+    },
+    f: {},
+    b: {},
+    inputSourceMap: null,
+    _coverageSchema: "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    hash: "4ba885b03160fc3c571286d5e8d3a6ba0beec07e"
+  };
+  var coverage = global[gcv] || (global[gcv] = {});
+
+  if (!coverage[path] || coverage[path].hash !== hash) {
+    coverage[path] = coverageData;
+  }
+
+  var actualCoverage = coverage[path];
+  {
+    // @ts-ignore
+    cov_1ccniyl078 = function () {
+      return actualCoverage;
+    };
+  }
+  return actualCoverage;
+}
+
+cov_1ccniyl078();
+cov_1ccniyl078().s[0]++;
+module.exports = "<div>\n    <h2 id=\"page-heading\">\n        <span jhiTranslate=\"jhdemoApp.auteur.home.title\">Auteurs</span>\n\n        <button id=\"jh-create-entity\" class=\"btn btn-primary float-right jh-create-entity create-auteur\" [routerLink]=\"['/auteur/new']\">\n            <fa-icon icon=\"plus\"></fa-icon>\n            <span  jhiTranslate=\"jhdemoApp.auteur.home.createLabel\">\n            Create a new Auteur\n            </span>\n        </button>\n    </h2>\n\n    <jhi-alert-error></jhi-alert-error>\n\n    <jhi-alert></jhi-alert>\n\n    <div class=\"alert alert-warning\" id=\"no-result\" *ngIf=\"auteurs?.length === 0\">\n        <span jhiTranslate=\"jhdemoApp.auteur.home.notFound\">No auteurs found</span>\n    </div>\n\n    <div class=\"table-responsive\" id=\"entities\" *ngIf=\"auteurs && auteurs.length > 0\">\n        <table class=\"table table-striped\" aria-describedby=\"page-heading\">\n            <thead>\n                <tr>\n                    <th scope=\"col\" ><span jhiTranslate=\"global.field.id\">ID</span></th>\n                    <th scope=\"col\" ><span jhiTranslate=\"jhdemoApp.auteur.auteur\">Auteur</span></th>\n                    <th scope=\"col\" ><span jhiTranslate=\"jhdemoApp.auteur.livre\">Livre</span></th>\n                    <th scope=\"col\"></th>\n                </tr>\n            </thead>\n            <tbody>\n                <tr *ngFor=\"let auteur of auteurs ;trackBy: trackId\">\n                    <td><a [routerLink]=\"['/auteur', auteur.id, 'view']\">{{ auteur.id }}</a></td>\n                    <td>{{ auteur.auteur }}</td>\n                    <td>\n                        <span *ngFor=\"let livre of auteur.livres; let last = last\">\n                            <a class=\"form-control-static\" [routerLink]=\"['/livre', livre?.id, 'view']\">{{ livre.titre }}</a>{{ last ? '' : ', ' }}\n                        </span>\n                    </td>\n                    <td class=\"text-right\">\n                        <div class=\"btn-group\">\n                            <button type=\"submit\"\n                                    [routerLink]=\"['/auteur', auteur.id, 'view']\"\n                                    class=\"btn btn-info btn-sm\">\n                                <fa-icon icon=\"eye\"></fa-icon>\n                                <span class=\"d-none d-md-inline\" jhiTranslate=\"entity.action.view\">View</span>\n                            </button>\n\n                            <button type=\"submit\"\n                                    [routerLink]=\"['/auteur', auteur.id, 'edit']\"\n                                    class=\"btn btn-primary btn-sm\">\n                                <fa-icon icon=\"pencil-alt\"></fa-icon>\n                                <span class=\"d-none d-md-inline\" jhiTranslate=\"entity.action.edit\">Edit</span>\n                            </button>\n\n                            <button type=\"submit\" (click)=\"delete(auteur)\"\n                                    class=\"btn btn-danger btn-sm\">\n                                <fa-icon icon=\"times\"></fa-icon>\n                                <span class=\"d-none d-md-inline\" jhiTranslate=\"entity.action.delete\">Delete</span>\n                            </button>\n                        </div>\n                    </td>\n                </tr>\n            </tbody>\n        </table>\n    </div>\n</div>\n";

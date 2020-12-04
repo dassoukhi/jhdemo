@@ -1,0 +1,51 @@
+8b3cfd290f99fea07f9c137e46bfdd88
+/* istanbul ignore next */
+function cov_2lemam0s9q() {
+  var path = "C:\\Users\\Dass\\Desktop\\Master1_YNOV\\DevLogiciel\\jhdemo\\src\\main\\webapp\\app\\entities\\job\\job.component.html";
+  var hash = "2a594a29df789191613f3639cf1960ad1d54292f";
+  var global = new Function("return this")();
+  var gcv = "__coverage__";
+  var coverageData = {
+    path: "C:\\Users\\Dass\\Desktop\\Master1_YNOV\\DevLogiciel\\jhdemo\\src\\main\\webapp\\app\\entities\\job\\job.component.html",
+    statementMap: {
+      "0": {
+        start: {
+          line: 1,
+          column: 0
+        },
+        end: {
+          line: 1,
+          column: 4533
+        }
+      }
+    },
+    fnMap: {},
+    branchMap: {},
+    s: {
+      "0": 0
+    },
+    f: {},
+    b: {},
+    inputSourceMap: null,
+    _coverageSchema: "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    hash: "2a594a29df789191613f3639cf1960ad1d54292f"
+  };
+  var coverage = global[gcv] || (global[gcv] = {});
+
+  if (!coverage[path] || coverage[path].hash !== hash) {
+    coverage[path] = coverageData;
+  }
+
+  var actualCoverage = coverage[path];
+  {
+    // @ts-ignore
+    cov_2lemam0s9q = function () {
+      return actualCoverage;
+    };
+  }
+  return actualCoverage;
+}
+
+cov_2lemam0s9q();
+cov_2lemam0s9q().s[0]++;
+module.exports = "<div>\n    <h2 id=\"page-heading\">\n        <span jhiTranslate=\"jhdemoApp.job.home.title\">Jobs</span>\n\n        <button id=\"jh-create-entity\" class=\"btn btn-primary float-right jh-create-entity create-job\" [routerLink]=\"['/job/new']\">\n            <fa-icon icon=\"plus\"></fa-icon>\n            <span  jhiTranslate=\"jhdemoApp.job.home.createLabel\">\n            Create a new Job\n            </span>\n        </button>\n    </h2>\n\n    <jhi-alert-error></jhi-alert-error>\n\n    <jhi-alert></jhi-alert>\n\n    <div class=\"alert alert-warning\" id=\"no-result\" *ngIf=\"jobs?.length === 0\">\n        <span jhiTranslate=\"jhdemoApp.job.home.notFound\">No jobs found</span>\n    </div>\n\n    <div class=\"table-responsive\" id=\"entities\" *ngIf=\"jobs && jobs.length > 0\">\n        <table class=\"table table-striped\" aria-describedby=\"page-heading\">\n            <thead>\n                <tr jhiSort [(predicate)]=\"predicate\" [(ascending)]=\"ascending\" [callback]=\"loadPage.bind(this)\">\n                    <th scope=\"col\"  jhiSortBy=\"id\"><span jhiTranslate=\"global.field.id\">ID</span> <fa-icon icon=\"sort\"></fa-icon></th>\n                    <th scope=\"col\"  jhiSortBy=\"jobTitle\"><span jhiTranslate=\"jhdemoApp.job.jobTitle\">Job Title</span> <fa-icon icon=\"sort\"></fa-icon></th>\n                    <th scope=\"col\"  jhiSortBy=\"minSalary\"><span jhiTranslate=\"jhdemoApp.job.minSalary\">Min Salary</span> <fa-icon icon=\"sort\"></fa-icon></th>\n                    <th scope=\"col\"  jhiSortBy=\"maxSalary\"><span jhiTranslate=\"jhdemoApp.job.maxSalary\">Max Salary</span> <fa-icon icon=\"sort\"></fa-icon></th>\n                    <th scope=\"col\"  jhiSortBy=\"employee.id\"><span jhiTranslate=\"jhdemoApp.job.employee\">Employee</span> <fa-icon icon=\"sort\"></fa-icon></th>\n                    <th scope=\"col\"></th>\n                </tr>\n            </thead>\n            <tbody>\n                <tr *ngFor=\"let job of jobs ;trackBy: trackId\">\n                    <td><a [routerLink]=\"['/job', job.id, 'view']\">{{ job.id }}</a></td>\n                    <td>{{ job.jobTitle }}</td>\n                    <td>{{ job.minSalary }}</td>\n                    <td>{{ job.maxSalary }}</td>\n                    <td>\n                        <div *ngIf=\"job.employee\">\n                            <a [routerLink]=\"['/employee', job.employee?.id, 'view']\" >{{ job.employee?.id }}</a>\n                        </div>\n                    </td>\n                    <td class=\"text-right\">\n                        <div class=\"btn-group\">\n                            <button type=\"submit\"\n                                    [routerLink]=\"['/job', job.id, 'view']\"\n                                    class=\"btn btn-info btn-sm\">\n                                <fa-icon icon=\"eye\"></fa-icon>\n                                <span class=\"d-none d-md-inline\" jhiTranslate=\"entity.action.view\">View</span>\n                            </button>\n\n                            <button type=\"submit\"\n                                    [routerLink]=\"['/job', job.id, 'edit']\"\n                                    class=\"btn btn-primary btn-sm\">\n                                <fa-icon icon=\"pencil-alt\"></fa-icon>\n                                <span class=\"d-none d-md-inline\" jhiTranslate=\"entity.action.edit\">Edit</span>\n                            </button>\n\n                            <button type=\"submit\" (click)=\"delete(job)\"\n                                    class=\"btn btn-danger btn-sm\">\n                                <fa-icon icon=\"times\"></fa-icon>\n                                <span class=\"d-none d-md-inline\" jhiTranslate=\"entity.action.delete\">Delete</span>\n                            </button>\n                        </div>\n                    </td>\n                </tr>\n            </tbody>\n        </table>\n    </div>\n\n    <div *ngIf=\"jobs && jobs.length > 0\">\n        <div class=\"row justify-content-center\">\n            <jhi-item-count [page]=\"page\" [total]=\"totalItems\" [itemsPerPage]=\"itemsPerPage\"></jhi-item-count>\n        </div>\n\n        <div class=\"row justify-content-center\">\n            <ngb-pagination [collectionSize]=\"totalItems\" [(page)]=\"ngbPaginationPage\" [pageSize]=\"itemsPerPage\" [maxSize]=\"5\" [rotate]=\"true\" [boundaryLinks]=\"true\" (pageChange)=\"loadPage($event)\"></ngb-pagination>\n        </div>\n    </div>\n</div>\n";

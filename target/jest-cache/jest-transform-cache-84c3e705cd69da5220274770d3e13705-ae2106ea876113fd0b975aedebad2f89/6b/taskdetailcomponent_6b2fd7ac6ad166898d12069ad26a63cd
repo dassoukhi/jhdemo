@@ -1,0 +1,51 @@
+74992133a4a2aa71f69b50448f95239c
+/* istanbul ignore next */
+function cov_127j7f5cu() {
+  var path = "C:\\Users\\Dass\\Desktop\\Master1_YNOV\\DevLogiciel\\jhdemo\\src\\main\\webapp\\app\\entities\\task\\task-detail.component.html";
+  var hash = "1e09a5f0e79df405e3c0676bf3a73e05a1029070";
+  var global = new Function("return this")();
+  var gcv = "__coverage__";
+  var coverageData = {
+    path: "C:\\Users\\Dass\\Desktop\\Master1_YNOV\\DevLogiciel\\jhdemo\\src\\main\\webapp\\app\\entities\\task\\task-detail.component.html",
+    statementMap: {
+      "0": {
+        start: {
+          line: 1,
+          column: 0
+        },
+        end: {
+          line: 1,
+          column: 1337
+        }
+      }
+    },
+    fnMap: {},
+    branchMap: {},
+    s: {
+      "0": 0
+    },
+    f: {},
+    b: {},
+    inputSourceMap: null,
+    _coverageSchema: "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    hash: "1e09a5f0e79df405e3c0676bf3a73e05a1029070"
+  };
+  var coverage = global[gcv] || (global[gcv] = {});
+
+  if (!coverage[path] || coverage[path].hash !== hash) {
+    coverage[path] = coverageData;
+  }
+
+  var actualCoverage = coverage[path];
+  {
+    // @ts-ignore
+    cov_127j7f5cu = function () {
+      return actualCoverage;
+    };
+  }
+  return actualCoverage;
+}
+
+cov_127j7f5cu();
+cov_127j7f5cu().s[0]++;
+module.exports = "<div class=\"row justify-content-center\">\n    <div class=\"col-8\">\n        <div *ngIf=\"task\">\n            <h2><span jhiTranslate=\"jhdemoApp.task.detail.title\">Task</span> {{ task.id }}</h2>\n\n            <hr>\n\n            <jhi-alert-error></jhi-alert-error>\n\n            <dl class=\"row-md jh-entity-details\">\n                <dt><span jhiTranslate=\"jhdemoApp.task.title\">Title</span></dt>\n                <dd>\n                    <span>{{ task.title }}</span>\n                </dd>\n                <dt><span jhiTranslate=\"jhdemoApp.task.description\">Description</span></dt>\n                <dd>\n                    <span>{{ task.description }}</span>\n                </dd>\n            </dl>\n\n            <button type=\"submit\"\n                    (click)=\"previousState()\"\n                    class=\"btn btn-info\">\n                <fa-icon icon=\"arrow-left\"></fa-icon>&nbsp;<span jhiTranslate=\"entity.action.back\">Back</span>\n            </button>\n\n            <button type=\"button\"\n                    [routerLink]=\"['/task', task.id, 'edit']\"\n                    class=\"btn btn-primary\">\n                <fa-icon icon=\"pencil-alt\"></fa-icon>&nbsp;<span jhiTranslate=\"entity.action.edit\">Edit</span>\n            </button>\n        </div>\n    </div>\n</div>\n";

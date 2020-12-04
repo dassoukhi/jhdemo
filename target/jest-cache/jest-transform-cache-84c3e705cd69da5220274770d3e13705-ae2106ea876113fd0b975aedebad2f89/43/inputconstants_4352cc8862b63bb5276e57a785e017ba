@@ -1,0 +1,108 @@
+b20cd015e3d09ee31f99031afefdab30
+"use strict";
+
+/* istanbul ignore next */
+function cov_1vgqfz8sis() {
+  var path = "C:\\Users\\Dass\\Desktop\\Master1_YNOV\\DevLogiciel\\jhdemo\\src\\main\\webapp\\app\\shared\\constants\\input.constants.ts";
+  var hash = "d8111ec20de6bdc1432ae17eb6b89a74a2df1acf";
+  var global = new Function("return this")();
+  var gcv = "__coverage__";
+  var coverageData = {
+    path: "C:\\Users\\Dass\\Desktop\\Master1_YNOV\\DevLogiciel\\jhdemo\\src\\main\\webapp\\app\\shared\\constants\\input.constants.ts",
+    statementMap: {
+      "0": {
+        start: {
+          line: 2,
+          column: 0
+        },
+        end: {
+          line: 2,
+          column: 62
+        }
+      },
+      "1": {
+        start: {
+          line: 3,
+          column: 0
+        },
+        end: {
+          line: 3,
+          column: 56
+        }
+      },
+      "2": {
+        start: {
+          line: 4,
+          column: 0
+        },
+        end: {
+          line: 4,
+          column: 35
+        }
+      },
+      "3": {
+        start: {
+          line: 5,
+          column: 0
+        },
+        end: {
+          line: 5,
+          column: 46
+        }
+      }
+    },
+    fnMap: {},
+    branchMap: {},
+    s: {
+      "0": 0,
+      "1": 0,
+      "2": 0,
+      "3": 0
+    },
+    f: {},
+    b: {},
+    inputSourceMap: {
+      file: "C:\\Users\\Dass\\Desktop\\Master1_YNOV\\DevLogiciel\\jhdemo\\src\\main\\webapp\\app\\shared\\constants\\input.constants.ts",
+      mappings: ";;;AAAa,QAAA,WAAW,GAAG,YAAY,CAAC;AAC3B,QAAA,gBAAgB,GAAG,kBAAkB,CAAC",
+      names: [],
+      sources: ["C:\\Users\\Dass\\Desktop\\Master1_YNOV\\DevLogiciel\\jhdemo\\src\\main\\webapp\\app\\shared\\constants\\input.constants.ts"],
+      sourcesContent: ["export const DATE_FORMAT = 'YYYY-MM-DD';\nexport const DATE_TIME_FORMAT = 'YYYY-MM-DDTHH:mm';\n"],
+      version: 3
+    },
+    _coverageSchema: "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    hash: "d8111ec20de6bdc1432ae17eb6b89a74a2df1acf"
+  };
+  var coverage = global[gcv] || (global[gcv] = {});
+
+  if (!coverage[path] || coverage[path].hash !== hash) {
+    coverage[path] = coverageData;
+  }
+
+  var actualCoverage = coverage[path];
+  {
+    // @ts-ignore
+    cov_1vgqfz8sis = function () {
+      return actualCoverage;
+    };
+  }
+  return actualCoverage;
+}
+
+cov_1vgqfz8sis();
+cov_1vgqfz8sis().s[0]++;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+/* istanbul ignore next */
+cov_1vgqfz8sis().s[1]++;
+exports.DATE_TIME_FORMAT = exports.DATE_FORMAT = void 0;
+
+/* istanbul ignore next */
+cov_1vgqfz8sis().s[2]++;
+exports.DATE_FORMAT = 'YYYY-MM-DD';
+
+/* istanbul ignore next */
+cov_1vgqfz8sis().s[3]++;
+exports.DATE_TIME_FORMAT = 'YYYY-MM-DDTHH:mm';
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkM6XFxVc2Vyc1xcRGFzc1xcRGVza3RvcFxcTWFzdGVyMV9ZTk9WXFxEZXZMb2dpY2llbFxcamhkZW1vXFxzcmNcXG1haW5cXHdlYmFwcFxcYXBwXFxzaGFyZWRcXGNvbnN0YW50c1xcaW5wdXQuY29uc3RhbnRzLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0FBQWEsT0FBQSxDQUFBLFdBQUEsR0FBYyxZQUFkOzs7O0FBQ0EsT0FBQSxDQUFBLGdCQUFBLEdBQW1CLGtCQUFuQiIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBjb25zdCBEQVRFX0ZPUk1BVCA9ICdZWVlZLU1NLUREJztcbmV4cG9ydCBjb25zdCBEQVRFX1RJTUVfRk9STUFUID0gJ1lZWVktTU0tRERUSEg6bW0nO1xuIl19

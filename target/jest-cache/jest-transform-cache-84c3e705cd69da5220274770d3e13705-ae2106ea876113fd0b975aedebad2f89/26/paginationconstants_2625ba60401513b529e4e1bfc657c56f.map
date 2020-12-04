@@ -1,0 +1,1 @@
+{"version":3,"sources":["C:\\Users\\Dass\\Desktop\\Master1_YNOV\\DevLogiciel\\jhdemo\\src\\main\\webapp\\app\\shared\\constants\\pagination.constants.ts"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAa,OAAA,CAAA,cAAA,GAAiB,EAAjB","sourcesContent":["export const ITEMS_PER_PAGE = 20;\n"]}

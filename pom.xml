@@ -14,14 +14,7 @@
         <developerConnection>scm:git:https://github.com/dassoukhi/jhdemo.git</developerConnection>
     </scm>
     
-    <distributionManagement>
-        <repository>
-            <id>github</id>
-            <name>GitHub dassoukhi Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/dassoukhi/jhdemo</url>
-        </repository>
-    </distributionManagement>
-
+  
     
     <repositories>
         <!-- jhipster-needle-maven-repository -->
@@ -31,6 +24,16 @@
         <!-- jhipster-needle-maven-plugin-repository -->
     </pluginRepositories>
 
+    <distributionManagement>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <url>https://vps-d02dec5b.vps.ovh.net:8081/artifactory/libs-snapshot</url>
+        </snapshotRepository>
+        <repository>
+            <id>central</id>
+            <url>https://vps-d02dec5b.vps.ovh.net:8081/artifactory/libs-release</url>
+        </repository>
+    </distributionManagement>
     <!-- jhipster-needle-distribution-management -->
 
     <properties>

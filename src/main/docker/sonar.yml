@@ -34,6 +34,6 @@ services:
       - traefik.http.routers.jhdemo-sonar.middlewares=auth
       - traefik.jhdemo-sonar.port=8080
       - traefik.http.middlewares.auth.basicauth.usersfile=C:\\DEV\Workspaces\\ynov\\jhdemo\\src\\main\\docker\\sonarusers
-    #ports:
-    #- 9001:9000
-    #- 9092:9092
+    ports:
+      - 9001:9000
+      - 9092:9092
