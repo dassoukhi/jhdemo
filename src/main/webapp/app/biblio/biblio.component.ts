@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import { JhiEventManager } from 'ng-jhipster';
@@ -14,12 +14,39 @@ import { BiblioService } from './biblio.service';
 })
 export class BiblioComponent implements OnInit {
   livres?: ILivre[];
+  livre?: ILivre;
+  on = true;
   eventSubscriber?: Subscription;
+  public titre?: string;
 
   constructor(protected livreService: BiblioService, protected eventManager: JhiEventManager, protected modalService: NgbModal) {}
 
   loadAll(): void {
     this.livreService.query().subscribe((res: HttpResponse<ILivre[]>) => (this.livres = res.body || []));
+  }
+
+  parAuteur(): void {
+    if (this.titre) {
+      this.livre = undefined;
+      this.on = false;
+      this.livreService.parAuteur(this.titre).subscribe((res: HttpResponse<ILivre[]>) => (this.livres = res.body || []));
+    }
+  }
+
+  loadAllParTheme(): void {
+    if (this.titre) {
+      this.livre = undefined;
+      this.on = false;
+      this.livreService.parTheme(this.titre).subscribe((res: HttpResponse<ILivre[]>) => (this.livres = res.body || []));
+    }
+  }
+
+  loadLivre(): void {
+    if (this.titre) {
+      this.livres = [];
+      this.on = false;
+      this.livreService.parTitre(this.titre).subscribe((res: HttpResponse<ILivre>) => (this.livre = res.body || undefined));
+    }
   }
 
   ngOnInit(): void {

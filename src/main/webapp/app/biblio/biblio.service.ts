@@ -11,7 +11,7 @@ type EntityArrayResponseType = HttpResponse<ILivre[]>;
 
 @Injectable({ providedIn: 'root' })
 export class BiblioService {
-  public resourceUrl = SERVER_API_URL + 'api/livres_by_titre';
+  public resourceUrl = SERVER_API_URL + 'api/livres';
   public resourceUrlTitre = SERVER_API_URL + 'api/livres_by_titre';
   public resourceUrlTheme = SERVER_API_URL + 'api/livre_byTheme?theme';
   public resourceUrlAuteur = SERVER_API_URL + 'api/livre_by_auteur?auteur';
